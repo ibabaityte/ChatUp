@@ -1,9 +1,11 @@
 import express from "express";
 import mongoose from "mongoose";
-import UserRoutes from "./routes/users.js"
 import cors from "cors";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
+
+import UserRoutes from "./routes/users.js"
+import ChatRoutes from "./routes/chats.js"
 
 const api = express();
 const port = process.env.PORT;
@@ -17,6 +19,7 @@ api.use(cors());
 api.use(express.json());
 
 api.use(UserRoutes);
+api.use(ChatRoutes);
 
 mongoose.connect(`mongodb://127.0.0.1:27017/${dbUrl}`, (err) => {
     if (err) {

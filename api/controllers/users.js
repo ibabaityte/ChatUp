@@ -51,7 +51,7 @@ const register = (req, res) => {
     }
 
     User.find({email: req.body.email}).then(data => {
-        if (data) {
+        if (data.length > 0) {
             return res.status(409).send({
                 code: "409",
                 message: "A user with this email already exists. Try again or login."
