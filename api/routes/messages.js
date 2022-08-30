@@ -4,7 +4,7 @@ import MessageController from "../controllers/messages.js";
 
 const router = Router();
 
-router.post("/sendMessage", checkAuth, MessageController.sendMessage);
-router.get("/fetchMessages/:chatId", checkAuth, MessageController.fetchMessages);
+router.post("/messages/sendMessage", checkAuth, MessageController.sendMessage);
+router.get("/messages/fetchMessages", MessageController.fetchMessages);
 
 export default router;
