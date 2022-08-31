@@ -53,7 +53,7 @@ const fetchMessages = (req, res) => {
     //         console.log(err);
     //     })
 
-    Message.find().sort({_id: -1}).limit(5)
+    Message.find().sort({_id: -1}).limit(10)
         .then(data => {
             res.send(data);
         })
