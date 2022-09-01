@@ -1,6 +1,6 @@
 import React from "react";
 
-const Messages = (props) => {
+const MessageList = (props) => {
     const {messages} = props;
 
     return (
@@ -22,4 +22,4 @@ const Messages = (props) => {
     );
 }
 
-export default Messages;
+export default MessageList;

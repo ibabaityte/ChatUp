@@ -1,5 +1,5 @@
 import React from "react";
-import {sendMessage} from "../utils/utils";
+import {sendMessage} from "../../utils/message/utils";
 
 const MessageInput = (props) => {
     const {
