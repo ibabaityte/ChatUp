@@ -1,8 +1,6 @@
-const sendMessage = (e, setMessage, setMessages, message, messages, socket) => {
+const sendMessage = (e, setMessage, setMessages, message, messages, socket, chat, authorId) => {
     e.preventDefault();
-    socket.emit("new message", {id: "1", message});
-    const newMessages = [...messages, message];
-    setMessages(newMessages);
+    socket.emit("new message", {chatId: chat._id, authorId, message, messages});
     setMessage("");
 }
 

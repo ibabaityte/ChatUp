@@ -1,8 +1,8 @@
 import axios from "axios";
 import Message from "../models/message.js";
 
-const getRecentMessages = (socket) => {
-    axios.get("http://localhost:8080/messages/fetchMessages").then(data => {
+const getRecentMessages = (socket, id) => {
+    axios.get("http://localhost:8080/messages/fetchMessages", {params: {chatId: id}}).then(data => {
         socket.emit("mostRecentMessages", data.data.reverse());
     }).catch(err => {
         console.log(err);
@@ -16,19 +16,23 @@ const joinChat = (room, socket, io) => {
     } else {
         socket.join(room.id);
         io.emit("user joined", "user joined");
+        // console.log(io.sockets.adapter.rooms);
     }
 }
 
-const newMessage = (data, io) => {
+const newMessage = async (data, io) => {
+    const {chatId, authorId} = data;
     try {
         const message = new Message(
             {
-                author: "123",
+                author: authorId,
+                chat: chatId,
                 content: data.message,
             }
         )
+        await message.populate("author");
         message.save().then(()=>{
-            io.to("1").emit("message received", message);
+            io.to(chatId).emit("message received", message);
         }).catch(error => console.log("error: "+error))
     } catch (error) {
         console.log("error: " + error);

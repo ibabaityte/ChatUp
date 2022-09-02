@@ -15,7 +15,7 @@ const Register = () => {
     return (
         <div>
             <div>
-                <h2>Sign Up to your account</h2>
+                <h2>Create a new account</h2>
             </div>
             <div>
                 <form onSubmit={e => handleRegister(e, newUser, setNewUser)}>

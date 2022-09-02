@@ -5,6 +5,7 @@ const MessageList = (props) => {
 
     return (
       <div>
+          <h3>message list</h3>
           {
               messages.length < 1 ?
                   <div>No messages</div>
@@ -12,7 +13,7 @@ const MessageList = (props) => {
                   messages.map((message, key) => {
                       return (
                           <div key={key}>
-                              <div><b>{message.author}</b></div>
+                              <div><b>{message.author.name}</b></div>
                               <div>{message.content}</div>
                           </div>
                       )

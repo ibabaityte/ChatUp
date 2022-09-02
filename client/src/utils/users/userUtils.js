@@ -15,6 +15,7 @@ const login = async (user) => {
                 token: data.data.token,
                 userId: data.data.userId
             };
+            console.log(data);
         })
         .catch((err) => {
             console.log(err);
@@ -26,7 +27,7 @@ const login = async (user) => {
 const register = (newUser) => {
     axios.post(REGISTER_URL, newUser)
         .then((result) => {
-            // console.log(result);
+            console.log(result.data.message);
         })
         .catch((err) => {
             console.log(err.response.data);

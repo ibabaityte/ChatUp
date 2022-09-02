@@ -1,5 +1,4 @@
 import Chats from "../models/chat.js";
-import User from "../models/user.js";
 
 const createChat = async (req, res) => {
     const {userId} = req.body;
@@ -10,51 +9,52 @@ const createChat = async (req, res) => {
         });
     }
 
-    let isChat = await Chats.find({
+    Chats.find({
         $and: [
             {users: req.userId},
-            {users: userId}
-        ]
-    }).populate("users", "-password").populate("latestMessage");
+            {users: userId}]
+    }).then(async (result) => {
+        if (result.length > 0) {
+            res.send({
+                code: "409",
+                message: "A chat with these users already exists. Try again."
+            });
+        } else {
+            const chatData = {
+                users: [req.userId, userId]
+            }
 
-    isChat = await User.populate(isChat, {
-        path: "latestMessage.author",
-        select: "name picture email"
-    })
+            const newChat = await new Chats(chatData).populate("users", "-password");
 
-    if (isChat.length > 0) {
-        res.send(isChat[0]);
-    } else {
-        let chatData = {
-            users: [req.userId, userId]
+            newChat.save()
+                .then(data => {
+                    res.send({
+                        message: "Chat created successfully",
+                        data: data
+                    });
+                })
+                .catch(err => {
+                    console.log(err);
+                    res.send({
+                        message: "Something went wrong during chat creation. Try again."
+                    });
+                })
         }
-
-        const newChat = await new Chats(chatData).populate("users", "-password");
-        newChat.save()
-            .then(data => {
-                res.send({
-                    message: "Chat created successfully",
-                    data: data
-                });
-            })
-            .catch(err => {
-                res.send({
-                    message: "Something went wrong during chat creation. Try again."
-                });
-            })
-    }
+    })
 }
 
 const fetchChats = async (req, res) => {
-    await Chats.find({users: req.userId}).populate("users", "-password").populate("latestMessage").sort({updatedAt: -1})
-        .then(async data => {
-            data = await User.populate(data, {
-                path: "latestMessage.author",
-                select: "name picture email"
-            })
-            res.send(data);
+    await Chats.find({
+        $and: [
+            {users: req.userId},
+            {users: req.query.userId}
+        ]
+    }).populate("users", "-password").sort({updatedAt: -1})
+        .then(async result => {
+            res.send(result);
         })
         .catch(err => {
+            console.log(err);
             res.send({
                 message: "Something went wrong while fetching chats. Try again."
             });

@@ -51,6 +51,7 @@ const register = (req, res) => {
     }
 
     User.find({email: req.body.email}).then(data => {
+        console.log(data.length);
         if (data.length > 0) {
             return res.status(409).send({
                 code: "409",
@@ -77,7 +78,7 @@ const register = (req, res) => {
                             data: data
                         });
                     }).catch((err) => {
-                        // console.log(err);
+                        console.log(err);
                         res.status(500).send({
                             code: "500",
                             message: "Something went wrong during register. Try again."

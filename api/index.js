@@ -46,7 +46,7 @@ const io = new Server(server, {
 });
 
 io.sockets.on("connection", (socket) => {
-    getRecentMessages(socket);
+    socket.on("fetch messages", (chatId) => getRecentMessages(socket, chatId));
     socket.on("join chat", (room) => joinChat(room, socket, io));
     socket.on("new message", (data) => newMessage(data, io));
 });
