@@ -7,7 +7,7 @@ const router = Router();
 router.post("/login", UsersController.login);
 router.post("/register", UsersController.register);
 router.get("/:userId", checkAuth, UsersController.get);
-router.get("/users/search",checkAuth, UsersController.search);
+router.get("/users/search", checkAuth, UsersController.search);
 router.delete("/:userId", checkAuth, UsersController.remove);
 router.put("/:userId", checkAuth, UsersController.update);
 

@@ -10,6 +10,7 @@ const secretKey = process.env.JWT_SECRET;
 export default async (req, res, next) => {
     try {
         req.userId = jwt.verify(req.headers.authorization, secretKey).userId;
+        console.log(req.userId);
         next();
     } catch {
         res.status(401).send({

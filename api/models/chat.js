@@ -5,10 +5,6 @@ const chatSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     }]
-    // latestMessage: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: "Message"
-    // }
 });
 
 const Chats = mongoose.model("Chat", chatSchema);

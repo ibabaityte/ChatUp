@@ -51,7 +51,6 @@ const register = (req, res) => {
     }
 
     User.find({email: req.body.email}).then(data => {
-        console.log(data.length);
         if (data.length > 0) {
             return res.status(409).send({
                 code: "409",
@@ -66,8 +65,7 @@ const register = (req, res) => {
                     });
                 } else {
                     const newUser = new User({
-                        name: req.body.name,
-                        surname: req.body.surname,
+                        nameAndSurname: req.body.name + " " + req.body.surname,
                         email: req.body.email,
                         password: hash,
                     });
@@ -171,24 +169,29 @@ const get = (req, res) => {
 const search = (req, res) => {
     if(!req.query) {
         res.send({
+            data: [],
             message: "There was a problem while searching for users. Try again."
         });
-    } else if (!req.query.name || !req.query.surname) {
+    } else if (!req.query.keyword) {
         res.send({
+            data: [],
             message: "Please provide name and surname"
         });
     }
 
-    User.find({name: req.query.name, surname: req.query.surname}).find({_id: {$ne: req.userId}}).then(data => {
+    User.find({nameAndSurname: {$regex: req.query.keyword}}).find({_id: {$ne: req.userId}}).then(data => {
         if(data === null || data.length === 0) {
             res.send({
+                data: [],
                 message: "No results"
             });
         } else {
             res.send(data);
         }
-    }).catch(() => {
+    }).catch((err) => {
+        console.log(err);
         res.send({
+            data: [],
             message: "An error occurred while searching for a user"
         });
     })

@@ -5,15 +5,17 @@ import {connectSocket} from "../socket/socketUtils";
 const CREATE_CHAT_URL = process.env.REACT_APP_CREATE_CHAT;
 const FETCH_CHATS_URL = process.env.REACT_APP_FETCH_CHATS;
 
-const createChat = (user, socket) => {
-    axios.post(CREATE_CHAT_URL, {userId: "630faaba201a2bd1c9144081"}, {
+const createChat = (user, socket, chatMember, setChat) => {
+    axios.post(CREATE_CHAT_URL, {userId: chatMember}, {
         headers: {
             "Authorization": user.token
         }
     }).then(result => {
         let chatId = result.data.data._id;
         connectSocket(socket, chatId);
+        fetchChat(user, setChat, socket, chatMember)
     }).catch(err => {
+        fetchChat(user, setChat, socket, chatMember)
         console.log(err);
     })
 }

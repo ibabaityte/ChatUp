@@ -24,7 +24,10 @@ const createChat = async (req, res) => {
                 users: [req.userId, userId]
             }
 
-            const newChat = await new Chats(chatData).populate("users", "-password");
+
+            const newChat = await new Chats(chatData).populate({
+                path: 'users'
+            });
 
             newChat.save()
                 .then(data => {

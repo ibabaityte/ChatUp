@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 
 import MessageInput from "./MessageInput";
 import MessageList from "./MessageList";
+import UserSearch from "../users/UserSearch";
 
 import {messageReceivedSocket} from "../../utils/socket/socketUtils";
 import {fetchChat} from "../../utils/chat/chatUtils";
@@ -16,14 +17,11 @@ const Messenger = (props) => {
     const [chat, setChat] = useState({});
 
     useEffect(() => {
-        // fetchChat(user, setChat, socket, receiver);
         socket.on("mostRecentMessages", messages => setMessages(messages));
     }, []);
 
     useEffect(() => {
         socket.on("message received", (message) => messageReceivedSocket(message, messages, setMessages));
-        // socket.on("message received", (message) => console.log(messages));
-        // console.log(messages);
     }, [messages]);
 
     const [receiver, setReceiver] = useState("");
@@ -32,6 +30,10 @@ const Messenger = (props) => {
 
     return (
         <div>
+            <UserSearch
+                socket={socket}
+                setChat={setChat}
+            />
             <div>{chat._id}</div>
             <div>
                 {
@@ -39,7 +41,7 @@ const Messenger = (props) => {
                     chat.users.map((user, key) => {
                         return (
                             <div key={key}>
-                                <div>{user.name} {user.surname}</div>
+                                <div>{user.nameAndSurname}</div>
                             </div>
                         );
                     }) : null
