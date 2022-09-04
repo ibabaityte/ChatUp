@@ -5,7 +5,7 @@ import {connectSocket} from "../socket/socketUtils";
 const CREATE_CHAT_URL = process.env.REACT_APP_CREATE_CHAT;
 const FETCH_CHATS_URL = process.env.REACT_APP_FETCH_CHATS;
 
-const createChat = (user, socket, chatMember, setChat) => {
+const createChat = (user, socket, chatMember, setChat,  chatList, setChatList) => {
     axios.post(CREATE_CHAT_URL, {userId: chatMember}, {
         headers: {
             "Authorization": user.token
@@ -13,14 +13,13 @@ const createChat = (user, socket, chatMember, setChat) => {
     }).then(result => {
         let chatId = result.data.data._id;
         connectSocket(socket, chatId);
-        fetchChat(user, setChat, socket, chatMember)
+        fetchChats(user, setChat, socket, chatMember, chatList, setChatList)
     }).catch(err => {
-        fetchChat(user, setChat, socket, chatMember)
         console.log(err);
     })
 }
 
-const fetchChat = (user, setChat, socket, receiver) => {
+const fetchChats = (user, setChat, socket, receiver = "",  chatList, setChatList) => {
     axios.get(FETCH_CHATS_URL, {
         params: {
             "userId": receiver
@@ -29,12 +28,19 @@ const fetchChat = (user, setChat, socket, receiver) => {
             "Authorization": user.token
         }
     }).then(result => {
-        setChat(result.data[0]);
-        connectSocket(socket, result.data[0]._id);
-        socket.emit("fetch messages", result.data[0]._id);
+        if(result.data.length === 1) {
+            setChat(result.data[0]);
+            connectSocket(socket, result.data[0]._id);
+            socket.emit("fetch messages", result.data[0]._id);
+            let newChatList = [...chatList];
+            newChatList.push(result.data[0]);
+            setChatList(newChatList);
+        } else {
+            setChatList(result.data);
+        }
     }).catch(err => {
         console.log(err);
     })
 }
 
-export {createChat, fetchChat}
+export {createChat, fetchChats}

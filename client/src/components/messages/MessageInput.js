@@ -1,17 +1,17 @@
-import React from "react";
+import React, {useState} from "react";
 import {connect} from "react-redux";
 import {sendMessage} from "../../utils/message/utils";
 
 const MessageInput = (props) => {
     const {
-        setMessage,
         setMessages,
-        message,
         messages,
         socket,
         chat,
         user
     } = props;
+
+    const [message, setMessage] = useState("");
 
     return (
         <div>

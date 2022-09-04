@@ -6,7 +6,13 @@ import {createChat} from "../../utils/chat/chatUtils";
 
 const UserSearch = (props) => {
 
-    const {socket, setChat, user} = props;
+    const {
+        socket,
+        setChat,
+        chatList,
+        setChatList,
+        user
+    } = props;
 
     const [keyword, setKeyword] = useState("");
     const [searchedUsers, setSearchedUsers] = useState([]);
@@ -23,7 +29,7 @@ const UserSearch = (props) => {
                     searchedUsers.map((searchedUser, key) => {
                         return (
                             <div key={key}>
-                                <div onClick={() => {createChat(user, socket, searchedUser._id, setChat)}}>{searchedUser.nameAndSurname}<button>send a message</button></div>
+                                <div onClick={() => {createChat(user, socket, searchedUser._id, setChat, chatList, setChatList)}}>{searchedUser.nameAndSurname}<button>send a message</button></div>
                             </div>
                         );
                     })

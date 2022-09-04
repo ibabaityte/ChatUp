@@ -104,6 +104,7 @@ const login = (req, res) => {
     }
 
     User.findOne({email: req.body.email}).then(data => {
+        const nameAndSurname = data.nameAndSurname;
         if (!data) {
             return res.status(404).send({
                 code: "404",
@@ -123,8 +124,7 @@ const login = (req, res) => {
                         return res.status(200).send({
                             message: "Logged in successfully.",
                             token: token,
-                            name: data.name,
-                            surname: data.surname,
+                            nameAndSurname,
                             userId: data._id,
                             email: data.email,
                             expirationTimestamp: Date.now() + 1000 * 60 * 60 * 48
@@ -179,7 +179,7 @@ const search = (req, res) => {
         });
     }
 
-    User.find({nameAndSurname: {$regex: req.query.keyword}}).find({_id: {$ne: req.userId}}).then(data => {
+    User.find({nameAndSurname: {$regex: req.query.keyword, $options: 'i'}}).find({_id: {$ne: req.userId}}).then(data => {
         if(data === null || data.length === 0) {
             res.send({
                 data: [],

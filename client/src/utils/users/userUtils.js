@@ -10,13 +10,11 @@ const login = async (user) => {
     await axios.post(LOGIN_URL, {email, password})
         .then((data) => {
             result = {
-                name: data.data.name,
-                surname: data.data.name,
+                nameAndSurname: data.data.nameAndSurname,
                 email: data.data.email,
                 token: data.data.token,
                 userId: data.data.userId
             };
-            console.log(data);
         })
         .catch((err) => {
             console.log(err);
@@ -40,7 +38,6 @@ const search = (keyword, user, setSearchedUsers) => {
             params: {keyword},
             headers: {"Authorization": user.token}
     }).then(result => {
-        console.log(setSearchedUsers);
         setSearchedUsers(result.data);
     }).catch(err => {
         console.log(err);

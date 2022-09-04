@@ -1,10 +1,23 @@
 import Chats from "../models/chat.js";
 
+const fetchChatsConfig = (req) => {
+    if(!req.query.userId) {
+        return {users: req.userId};
+    } else {
+        return {
+            $and: [
+                {users: req.userId},
+                {users: req.query.userId}
+            ]
+        }
+    }
+}
+
 const createChat = async (req, res) => {
     const {userId} = req.body;
 
     if (!userId) {
-        res.send({
+        res.status(400).send({
             message: "Please provide a user id to create a chat"
         });
     }
@@ -15,7 +28,7 @@ const createChat = async (req, res) => {
             {users: userId}]
     }).then(async (result) => {
         if (result.length > 0) {
-            res.send({
+            res.status(409).send({
                 code: "409",
                 message: "A chat with these users already exists. Try again."
             });
@@ -24,21 +37,20 @@ const createChat = async (req, res) => {
                 users: [req.userId, userId]
             }
 
-
             const newChat = await new Chats(chatData).populate({
                 path: 'users'
             });
 
             newChat.save()
                 .then(data => {
-                    res.send({
+                    res.status(200).send({
                         message: "Chat created successfully",
                         data: data
                     });
                 })
                 .catch(err => {
                     console.log(err);
-                    res.send({
+                    res.status(500).send({
                         message: "Something went wrong during chat creation. Try again."
                     });
                 })
@@ -47,12 +59,7 @@ const createChat = async (req, res) => {
 }
 
 const fetchChats = async (req, res) => {
-    await Chats.find({
-        $and: [
-            {users: req.userId},
-            {users: req.query.userId}
-        ]
-    }).populate("users", "-password").sort({updatedAt: -1})
+    await Chats.find(fetchChatsConfig(req)).populate("users", "-password").sort({updatedAt: -1})
         .then(async result => {
             res.send(result);
         })

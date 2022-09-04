@@ -1,67 +1,46 @@
 import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 
-import MessageInput from "./MessageInput";
-import MessageList from "./MessageList";
 import UserSearch from "../users/UserSearch";
+import ChatList from "../chats/ChatList";
+import Chat from "../chats/Chat";
 
 import {messageReceivedSocket} from "../../utils/socket/socketUtils";
-import {fetchChat} from "../../utils/chat/chatUtils";
 
 const Messenger = (props) => {
 
-    const {socket, user} = props;
+    const {socket} = props;
 
-    const [message, setMessage] = useState("");
     const [messages, setMessages] = useState([]);
     const [chat, setChat] = useState({});
-
-    useEffect(() => {
-        socket.on("mostRecentMessages", messages => setMessages(messages));
-    }, []);
+    const [chatList, setChatList] = useState([]);
 
     useEffect(() => {
         socket.on("message received", (message) => messageReceivedSocket(message, messages, setMessages));
     }, [messages]);
-
-    const [receiver, setReceiver] = useState("");
-
-    console.log(chat);
 
     return (
         <div>
             <UserSearch
                 socket={socket}
                 setChat={setChat}
+                chatList={chatList}
+                setChatList={setChatList}
             />
-            <div>{chat._id}</div>
-            <div>
-                {
-                    chat.users ?
-                    chat.users.map((user, key) => {
-                        return (
-                            <div key={key}>
-                                <div>{user.nameAndSurname}</div>
-                            </div>
-                        );
-                    }) : null
-                }
-            </div>
-            <h3>Enter a user id to send them a message</h3>
-            <form>
-                <input type="text" value={receiver} onChange={e => {setReceiver(e.currentTarget.value)}}/>
-            </form>
-            <button onClick={() => fetchChat(user, setChat, socket, receiver)}>fetch chat</button>
-            <MessageInput
-                setMessage={setMessage}
-                setMessages={setMessages}
-                message={message}
-                messages={messages}
+
+            <ChatList
+                setChat={setChat}
                 socket={socket}
-                chat={chat}
+                setMessages={setMessages}
+                chatList={chatList}
+                setChatList={setChatList}
             />
-            <MessageList
+
+            <Chat
+                chat={chat}
+                socket={socket}
                 messages={messages}
+                setMessages={setMessages}
             />
         </div>
     );
