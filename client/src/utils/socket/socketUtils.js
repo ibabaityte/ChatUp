@@ -3,9 +3,13 @@ const connectSocket = (socket, chatId) => {
 }
 
 const messageReceivedSocket = (message, messages, setMessages) => {
-    if(messages !== []) {
-        const newMessages = [...messages, message];
-        setMessages(newMessages);
+    try {
+        if(messages !== []) {
+            const newMessages = [...messages, message];
+            setMessages(newMessages);
+        }
+    } catch (err) {
+        console.log(err);
     }
 }
 

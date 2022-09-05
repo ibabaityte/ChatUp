@@ -18,8 +18,6 @@ const ChatList = (props) => {
         socket.on("mostRecentMessages", messages => setMessages(messages));
     }, []);
 
-    console.log(chatList);
-
     return (
         <div>
             <h2>Chat List</h2>

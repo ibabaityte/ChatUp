@@ -13,30 +13,29 @@ const getRecentMessages = (socket, id) => {
 const joinChat = (room, socket, io) => {
     if(room === undefined) {
         return null;
+        // will handle later when front error handling is implemented
     } else {
         socket.join(room.id);
         io.emit("user joined", "user joined");
-        // console.log(io.sockets.adapter.rooms);
     }
 }
 
 const newMessage = async (data, io) => {
-    const {chatId, authorId} = data;
-    try {
-        const message = new Message(
+    const {chatId, authorId, message} = data;
+    if(!message || message === "") {
+        // will handle later when front error handling is implemented
+    }
+        const newMessage = new Message(
             {
                 author: authorId,
                 chat: chatId,
-                content: data.message,
+                content: message,
             }
         )
-        await message.populate("author");
-        message.save().then(()=>{
-            io.to(chatId).emit("message received", message);
-        }).catch(error => console.log("error: "+error))
-    } catch (error) {
-        console.log("error: " + error);
-    }
+        await newMessage.populate("author");
+        newMessage.save().then(()=>{
+            io.to(chatId).emit("message received", newMessage);
+        }).catch(error => console.log(error));
 }
 
 export {getRecentMessages, joinChat, newMessage}

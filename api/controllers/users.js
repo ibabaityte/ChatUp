@@ -168,29 +168,29 @@ const get = (req, res) => {
 
 const search = (req, res) => {
     if(!req.query) {
-        res.send({
+        res.status(400).send({
             data: [],
             message: "There was a problem while searching for users. Try again."
         });
     } else if (!req.query.keyword) {
-        res.send({
+        res.status(400).send({
             data: [],
-            message: "Please provide name and surname"
+            message: "Please provide a name or a surname to search for a user."
         });
     }
 
     User.find({nameAndSurname: {$regex: req.query.keyword, $options: 'i'}}).find({_id: {$ne: req.userId}}).then(data => {
         if(data === null || data.length === 0) {
-            res.send({
+            res.status(404).send({
                 data: [],
                 message: "No results"
             });
         } else {
-            res.send(data);
+            res.status(200).send(data);
         }
     }).catch((err) => {
         console.log(err);
-        res.send({
+        res.status(500).send({
             data: [],
             message: "An error occurred while searching for a user"
         });
@@ -210,6 +210,7 @@ const remove = (req, res) => {
             message: "User profile deleted successfully"
         });
     }).catch(err => {
+        console.log(err);
         if (err.kind === "ObjectId" || err.name === "NotFound") {
             return res.status(404).send({
                 code: "404",

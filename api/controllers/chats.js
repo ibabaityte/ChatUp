@@ -61,11 +61,11 @@ const createChat = async (req, res) => {
 const fetchChats = async (req, res) => {
     await Chats.find(fetchChatsConfig(req)).populate("users", "-password").sort({updatedAt: -1})
         .then(async result => {
-            res.send(result);
+            res.status(200).send(result);
         })
         .catch(err => {
             console.log(err);
-            res.send({
+            res.status(500).send({
                 message: "Something went wrong while fetching chats. Try again."
             });
         })
