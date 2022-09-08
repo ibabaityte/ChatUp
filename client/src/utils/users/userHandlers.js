@@ -9,9 +9,9 @@ const handleInputChange = (e, state, setState) => {
     );
 }
 
-const handleRegister = (e, newUser, setNewUser) => {
+const handleRegister = (e, newUser, navigate) => {
     e.preventDefault();
-    register(newUser, setNewUser);
+    register(newUser, navigate);
 }
 
 export {

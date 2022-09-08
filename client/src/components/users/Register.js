@@ -1,9 +1,11 @@
 import React, {useState} from "react";
+import { useNavigate } from "react-router-dom";
 
 // util imports
 import {handleRegister, handleInputChange} from "../../utils/users/userHandlers";
 
 const Register = () => {
+    let navigate = useNavigate();
 
     const [newUser, setNewUser] = useState({
         name: "",
@@ -18,7 +20,7 @@ const Register = () => {
                 <h2>Create a new account</h2>
             </div>
             <div>
-                <form onSubmit={e => handleRegister(e, newUser, setNewUser)}>
+                <form onSubmit={e => handleRegister(e, newUser, navigate)}>
                     <input
                         type="text"
                         value={newUser.name}

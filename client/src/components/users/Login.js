@@ -1,20 +1,22 @@
 import React, {useState} from "react";
 import {connect} from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 // utils
 import {handleInputChange} from "../../utils/users/userHandlers.js";
 import {loginAction} from "../../redux/actions";
 
 const Login = (props) => {
+    let navigate = useNavigate();
 
     const [user, setUser] = useState({
         email: "",
         password: ""
     });
 
-    const handleInput = (e) => {
+    const handleInput = (e, navigate) => {
         e.preventDefault();
-        props.loginAction(user);
+        props.loginAction(user, navigate);
     }
 
     return (
@@ -42,7 +44,7 @@ const Login = (props) => {
                         onChange={e => handleInputChange(e, user, setUser)}
                     />
 
-                    <button onClick={(e) => handleInput(e)}>Sign In</button>
+                    <button onClick={(e) => handleInput(e, navigate)}>Sign In</button>
                 </form>
             </div>
         </div>
