@@ -1,10 +1,11 @@
-import React, {useState} from "react";
+import {useState} from "react";
 import {connect} from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 // utils
 import {handleInputChange} from "../../utils/users/userHandlers.js";
-import {loginAction} from "../../redux/actions";
+import {loginAction, socketAction} from "../../redux/actions";
+
 
 const Login = (props) => {
     let navigate = useNavigate();
@@ -17,6 +18,7 @@ const Login = (props) => {
     const handleInput = (e, navigate) => {
         e.preventDefault();
         props.loginAction(user, navigate);
+        props.socketAction();
     }
 
     return (
@@ -55,4 +57,4 @@ const mapStateToProps = (state) => {
     return { user: state.user }
 }
 
-export default connect(mapStateToProps, {loginAction})(Login);
+export default connect(mapStateToProps, {loginAction, socketAction})(Login);

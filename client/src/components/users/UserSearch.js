@@ -40,7 +40,10 @@ const UserSearch = (props) => {
 }
 
 const mapStateToProps = (state) => {
-    return { user: state.user }
+    return {
+        user: state.user,
+        socket: state.socket
+    }
 }
 
 export default connect(mapStateToProps)(UserSearch);

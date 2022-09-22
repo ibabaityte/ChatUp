@@ -7,7 +7,6 @@ const Chat = (props) => {
 
     const {
         chat,
-        socket,
         messages,
         setMessages,
         user
@@ -29,14 +28,12 @@ const Chat = (props) => {
             <MessageInput
                 setMessages={setMessages}
                 messages={messages}
-                socket={socket}
                 chat={chat}
             />
 
             <MessageList
                 messages={messages}
                 setMessages={setMessages}
-                socket={socket}
             />
         </div>
     );

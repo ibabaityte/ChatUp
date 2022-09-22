@@ -26,7 +26,8 @@ const MessageInput = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        user: state.user
+        user: state.user,
+        socket: state.socket
     }
 }
 

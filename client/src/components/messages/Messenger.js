@@ -11,6 +11,8 @@ const Messenger = (props) => {
 
     const {socket} = props;
 
+    console.log(socket);
+
     const [messages, setMessages] = useState([]);
     const [chat, setChat] = useState({});
     const [chatList, setChatList] = useState([]);
@@ -22,7 +24,6 @@ const Messenger = (props) => {
     return (
         <div>
             <UserSearch
-                socket={socket}
                 setChat={setChat}
                 chatList={chatList}
                 setChatList={setChatList}
@@ -30,7 +31,6 @@ const Messenger = (props) => {
 
             <ChatList
                 setChat={setChat}
-                socket={socket}
                 setMessages={setMessages}
                 chatList={chatList}
                 setChatList={setChatList}
@@ -38,7 +38,6 @@ const Messenger = (props) => {
 
             <Chat
                 chat={chat}
-                socket={socket}
                 messages={messages}
                 setMessages={setMessages}
             />
@@ -48,7 +47,8 @@ const Messenger = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        user: state.user
+        user: state.user,
+        socket: state.socket
     }
 }
 

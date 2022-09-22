@@ -1,4 +1,5 @@
 import React, {useEffect} from "react";
+import {connect} from "react-redux";
 
 const MessageList = (props) => {
 
@@ -32,4 +33,10 @@ const MessageList = (props) => {
     );
 }
 
-export default MessageList;
+const mapStateToProps = (state) => {
+    return {
+        socket: state.socket
+    }
+}
+
+export default connect(mapStateToProps)(MessageList);

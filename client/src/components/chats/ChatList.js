@@ -6,11 +6,11 @@ const ChatList = (props) => {
 
     const {
         setChat,
-        socket,
         setMessages,
         chatList,
         setChatList,
-        user
+        user,
+        socket
     } = props;
 
     useEffect(() => {
@@ -46,7 +46,8 @@ const ChatList = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        user: state.user
+        user: state.user,
+        socket: state.socket
     }
 }
 
