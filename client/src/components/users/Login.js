@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 // utils
 import {handleInputChange} from "../../utils/users/userHandlers.js";
-import {loginAction, socketAction} from "../../redux/actions";
+import {loginAction} from "../../redux/actions";
 
 
 const Login = (props) => {
@@ -18,7 +18,6 @@ const Login = (props) => {
     const handleInput = (e, navigate) => {
         e.preventDefault();
         props.loginAction(user, navigate);
-        props.socketAction();
     }
 
     return (
@@ -57,4 +56,4 @@ const mapStateToProps = (state) => {
     return { user: state.user }
 }
 
-export default connect(mapStateToProps, {loginAction, socketAction})(Login);
+export default connect(mapStateToProps, {loginAction})(Login);

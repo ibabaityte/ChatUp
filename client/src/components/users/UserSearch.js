@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {connect} from "react-redux";
+import {socket} from "../../utils/socket/socketUtils";
 
 import {search} from "../../utils/users/userUtils";
 import {createChat} from "../../utils/chat/chatUtils";
@@ -7,7 +8,6 @@ import {createChat} from "../../utils/chat/chatUtils";
 const UserSearch = (props) => {
 
     const {
-        socket,
         setChat,
         chatList,
         setChatList,
@@ -41,8 +41,7 @@ const UserSearch = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        user: state.user,
-        socket: state.socket
+        user: state.user
     }
 }
 

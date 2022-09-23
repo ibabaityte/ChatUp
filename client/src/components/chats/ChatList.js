@@ -1,22 +1,21 @@
 import React, {useEffect} from "react";
 import {fetchChats} from "../../utils/chat/chatUtils";
 import {connect} from "react-redux";
+import {socket} from "../../utils/socket/socketUtils";
 
 const ChatList = (props) => {
 
     const {
         setChat,
-        setMessages,
         chatList,
         setChatList,
-        user,
-        socket
+        user
     } = props;
+
 
     useEffect(() => {
         fetchChats(user, setChat, socket, "", chatList, setChatList);
-        socket.on("mostRecentMessages", messages => setMessages(messages));
-    }, []);
+    }, [setChat, user, setChatList]);
 
     return (
         <div>
@@ -46,8 +45,7 @@ const ChatList = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        user: state.user,
-        socket: state.socket
+        user: state.user
     }
 }
 

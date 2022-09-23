@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 import {connect} from "react-redux";
 import {sendMessage} from "../../utils/message/utils";
+import {socket} from "../../utils/socket/socketUtils";
 
 const MessageInput = (props) => {
     const {
         setMessages,
         messages,
-        socket,
         chat,
         user
     } = props;
@@ -26,8 +26,7 @@ const MessageInput = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        user: state.user,
-        socket: state.socket
+        user: state.user
     }
 }
 

@@ -1,17 +1,17 @@
 import React, {useEffect} from "react";
 import {connect} from "react-redux";
+import {socket} from "../../utils/socket/socketUtils";
 
 const MessageList = (props) => {
 
     const {
         messages,
-        setMessages,
-        socket
+        setMessages
     } = props;
 
     useEffect(() => {
         socket.on("mostRecentMessages", messages => setMessages(messages));
-    }, []);
+    }, [setMessages]);
 
     return (
       <div>

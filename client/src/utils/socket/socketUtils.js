@@ -1,3 +1,6 @@
+import io from "socket.io-client";
+const endpoint = process.env.REACT_APP_API_ENDPOINT;
+
 const connectSocket = (socket, chatId) => {
     socket.emit("join chat", {id: chatId});
 }
@@ -12,5 +15,7 @@ const messageReceivedSocket = (message, messages, setMessages) => {
         console.log(err);
     }
 }
+
+export const socket = io.connect(endpoint);
 
 export {connectSocket, messageReceivedSocket}

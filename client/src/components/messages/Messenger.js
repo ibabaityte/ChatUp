@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {connect} from "react-redux";
+import {socket} from "../../utils/socket/socketUtils";
 
 import UserSearch from "../users/UserSearch";
 import ChatList from "../chats/ChatList";
@@ -7,19 +7,17 @@ import Chat from "../chats/Chat";
 
 import {messageReceivedSocket} from "../../utils/socket/socketUtils";
 
-const Messenger = (props) => {
-
-    const {socket} = props;
-
-    console.log(socket);
+const Messenger = () => {
 
     const [messages, setMessages] = useState([]);
     const [chat, setChat] = useState({});
     const [chatList, setChatList] = useState([]);
 
+
     useEffect(() => {
         socket.on("message received", (message) => messageReceivedSocket(message, messages, setMessages));
-    }, [messages]);
+        socket.on("mostRecentMessages", messages => setMessages(messages));
+    }, [messages, setMessages]);
 
     return (
         <div>
@@ -31,7 +29,6 @@ const Messenger = (props) => {
 
             <ChatList
                 setChat={setChat}
-                setMessages={setMessages}
                 chatList={chatList}
                 setChatList={setChatList}
             />
@@ -45,11 +42,4 @@ const Messenger = (props) => {
     );
 }
 
-const mapStateToProps = (state) => {
-    return {
-        user: state.user,
-        socket: state.socket
-    }
-}
-
-export default connect(mapStateToProps)(Messenger);
+export default Messenger;
