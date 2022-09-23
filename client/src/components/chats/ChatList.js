@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {fetchChats} from "../../utils/chat/chatUtils";
+import {fetchChats, getChat} from "../../utils/chat/chatUtils";
 import {connect} from "react-redux";
 import {socket} from "../../utils/socket/socketUtils";
 
@@ -11,7 +11,6 @@ const ChatList = (props) => {
         setChatList,
         user
     } = props;
-
 
     useEffect(() => {
         fetchChats(user, setChat, socket, "", chatList, setChatList);
@@ -34,7 +33,7 @@ const ChatList = (props) => {
                             userId = chat.users[0]._id;
                         }
                         return (
-                            <li key={key} value={name} onClick={() => fetchChats(user, setChat, socket, userId, chatList, setChatList)}>{name}</li>
+                            <li key={key} value={name} onClick={() => getChat(user, setChat, socket, userId)}>{name}</li>
                         );
                     })
             }
