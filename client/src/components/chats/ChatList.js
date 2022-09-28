@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import {useEffect} from "react";
 import {fetchChats, getChat} from "../../utils/chat/chatUtils";
 import {connect} from "react-redux";
 import {socket} from "../../utils/socket/socketUtils";

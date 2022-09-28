@@ -1,0 +1,43 @@
+.logo {
+    font-size: 70px;
+    font-family: 'Raleway', sans-serif;
+    letter-spacing: 35px;
+    font-weight: 900;
+    margin: auto;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    display: inline-block;
+}
+
+.logoContainer {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.slogan {
+    font-family: 'Crimson Text', serif;
+    text-align: center;
+    color: rgba(54, 54, 54, 0.6)
+}
+
+.form {
+    height: 60%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+
+@media screen and (max-width: 600px) {
+    .logo {
+        font-size: 50px
+    }
+    .logoContainer {
+        width: 80%;
+        margin: 0 auto
+    }
+}

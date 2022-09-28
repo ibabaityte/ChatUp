@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {socket} from "../../utils/socket/socketUtils";
 
 import UserSearch from "../users/UserSearch";

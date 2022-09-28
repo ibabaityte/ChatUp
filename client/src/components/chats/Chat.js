@@ -1,4 +1,3 @@
-import React from "react";
 import MessageInput from "../messages/MessageInput";
 import MessageList from "../messages/MessageList";
 import {connect} from "react-redux";

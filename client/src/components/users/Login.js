@@ -1,11 +1,18 @@
 import {useState} from "react";
 import {connect} from "react-redux";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 // utils
 import {handleInputChange} from "../../utils/users/userHandlers.js";
 import {loginAction} from "../../redux/actions";
 
+// style imports
+import {ThemeProvider} from "@mui/material/styles";
+import Grid from "@mui/material/Unstable_Grid2";
+import TextField from '@mui/material/TextField';
+import Button from "@mui/material/Button";
+import {input, formContainer, formTitle, confirmButton} from "../../styles/Startup/StartupPageStyles"
+import theme from "../../styles/Theme";
 
 const Login = (props) => {
     let navigate = useNavigate();
@@ -21,13 +28,15 @@ const Login = (props) => {
     }
 
     return (
-        <div>
-            <div>
-                <h2>Sign In to your account</h2>
-            </div>
-            <div>
-                <form>
-                    <input
+        <ThemeProvider theme={theme}>
+            <Grid item sx={formTitle}>
+                <h4>Sign In to your account</h4>
+            </Grid>
+            <Grid item sx={formContainer}>
+                <form className="form">
+                    <TextField
+                        sx={input}
+                        variant="standard"
                         type="text"
                         value={user.email || ""}
                         name="email"
@@ -37,7 +46,9 @@ const Login = (props) => {
 
                     <br/>
 
-                    <input
+                    <TextField
+                        sx={input}
+                        variant="standard"
                         type="password"
                         value={user.password || ""}
                         name="password"
@@ -45,15 +56,15 @@ const Login = (props) => {
                         onChange={e => handleInputChange(e, user, setUser)}
                     />
 
-                    <button onClick={(e) => handleInput(e, navigate)}>Sign In</button>
+                    <Button variant="contained" color="secondary" sx={confirmButton} type="submit" onClick={e => {handleInput(e, navigate)}}>Sign In</Button>
                 </form>
-            </div>
-        </div>
+            </Grid>
+        </ThemeProvider>
     );
 }
 
 const mapStateToProps = (state) => {
-    return { user: state.user }
+    return {user: state.user}
 }
 
 export default connect(mapStateToProps, {loginAction})(Login);
