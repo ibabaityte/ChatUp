@@ -104,13 +104,13 @@ const login = (req, res) => {
     }
 
     User.findOne({email: req.body.email}).then(data => {
-        const nameAndSurname = data.nameAndSurname;
         if (!data) {
             return res.status(404).send({
                 code: "404",
                 message: "Email or password is incorrect. Please try again. "
             });
         } else {
+            const nameAndSurname = data.nameAndSurname;
             bcrypt.compare(req.body.password, data.password)
                 .then(result => {
                     if (result) {

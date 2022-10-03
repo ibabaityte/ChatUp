@@ -1,6 +1,5 @@
 import {useState} from "react";
 import {connect} from "react-redux";
-import {useNavigate} from "react-router-dom";
 
 // utils
 import {handleInputChange} from "../../utils/users/userHandlers.js";
@@ -15,16 +14,14 @@ import {input, formContainer, formTitle, confirmButton} from "../../styles/Start
 import theme from "../../styles/Theme";
 
 const Login = (props) => {
-    let navigate = useNavigate();
-
     const [user, setUser] = useState({
         email: "",
         password: ""
     });
 
-    const handleInput = (e, navigate) => {
+    const handleInput = (e) => {
         e.preventDefault();
-        props.loginAction(user, navigate);
+        props.loginAction(user);
     }
 
     return (
@@ -56,7 +53,7 @@ const Login = (props) => {
                         onChange={e => handleInputChange(e, user, setUser)}
                     />
 
-                    <Button variant="contained" color="secondary" sx={confirmButton} type="submit" onClick={e => {handleInput(e, navigate)}}>Sign In</Button>
+                    <Button variant="contained" color="secondary" sx={confirmButton} type="submit" onClick={e => {handleInput(e)}}>Sign In</Button>
                 </form>
             </Grid>
         </ThemeProvider>

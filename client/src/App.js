@@ -6,10 +6,13 @@ import Messenger from "./components/messages/Messenger";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import PublicRoutes from "./components/PublicRoutes";
 
+// style imports
+import Grid from "@mui/material/Unstable_Grid2";
+
 const App = () => {
 
     return (
-        <div className="App">
+        <Grid className="App">
             <Routes>
                 <Route element={<PublicRoutes/>}>
                     <Route path="/*" element={<StartupPage/>}/>
@@ -18,7 +21,7 @@ const App = () => {
                     <Route path="/messenger" element={<Messenger/>}/>
                 </Route>
             </Routes>
-        </div>
+        </Grid>
     );
 }
 

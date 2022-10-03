@@ -4,7 +4,7 @@ const REGISTER_URL = process.env.REACT_APP_REGISTER;
 const LOGIN_URL = process.env.REACT_APP_LOGIN;
 const USER_SEARCH_URL = process.env.REACT_APP_USER_SEARCH;
 
-const login = async (user, navigate) => {
+const login = async (user) => {
     const {email, password} = user;
     let result;
     await axios.post(LOGIN_URL, {email, password})
@@ -15,11 +15,10 @@ const login = async (user, navigate) => {
                 token: data.data.token,
                 userId: data.data.userId
             };
-            navigate("/messenger");
         })
         .catch((err) => {
             console.log(err);
-            result = err;
+            result = {};
         });
     return result;
 }
@@ -28,7 +27,7 @@ const register = (newUser, navigate) => {
     axios.post(REGISTER_URL, newUser)
         .then((result) => {
             console.log(result.data.message);
-            navigate("/messenger");
+            navigate("/");
         })
         .catch((err) => {
             console.log(err.response);
