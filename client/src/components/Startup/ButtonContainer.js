@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import {ThemeProvider} from "@mui/material/styles";
 import {link} from "../../styles/CommonStyles";
 import Button from "@mui/material/Button";
-import {button, buttonContainer} from "../../styles/Startup/StartupPageStyles";
+import {button, buttonContainer} from "../../styles/startup/StartupPageStyles";
 import theme from "../../styles/Theme";
 
 const ButtonContainer = () => {

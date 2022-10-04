@@ -1,3 +1,6 @@
+body {
+    margin: 0;
+}
 .logo {
     font-size: 70px;
     font-family: 'Raleway', sans-serif;
@@ -8,6 +11,7 @@
     text-decoration: none;
     color: black;
     display: inline-block;
+    text-indent: 35px;
 }
 
 .logoContainer {

@@ -8,7 +8,7 @@ import {handleRegister, handleInputChange} from "../../utils/users/userHandlers"
 import {ThemeProvider} from "@mui/material/styles";
 import TextField from '@mui/material/TextField';
 import Button from "@mui/material/Button";
-import {input, formContainer, formTitle, confirmButton} from "../../styles/Startup/StartupPageStyles"
+import {input, formContainer, formTitle, confirmButton} from "../../styles/startup/StartupPageStyles"
 import theme from "../../styles/Theme";
 import Grid from "@mui/material/Unstable_Grid2";
 

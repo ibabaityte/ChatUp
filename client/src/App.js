@@ -12,7 +12,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 const App = () => {
 
     return (
-        <Grid className="App">
+        <Grid container className="App">
             <Routes>
                 <Route element={<PublicRoutes/>}>
                     <Route path="/*" element={<StartupPage/>}/>
