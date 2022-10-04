@@ -31,7 +31,7 @@ const ChatList = (props) => {
                                 chat.users.map((chatUser, key) => {
                                     if (chatUser.nameAndSurname !== user.nameAndSurname) {
                                         return (
-                                            <li key={key} value={chatUser.nameAndSurname} onClick={() => getChatAction(user, chatUser.userId)}>{chatUser.nameAndSurname}</li>
+                                            <li key={key} value={chatUser.nameAndSurname} onClick={() => getChatAction(user, chatUser._id)}>{chatUser.nameAndSurname}</li>
                                         );
                                     }
                                 })
