@@ -8,10 +8,17 @@ const messengerContainer = {
 
 const chatContainer = {
     display: "flex",
-    flexDirection: "row"
+    flexDirection: "row",
+    height: "88%",
+    marginTop: "8px"
+}
+
+const headerContainer = {
+    height: "10%"
 }
 
 export {
     messengerContainer,
-    chatContainer
+    chatContainer,
+    headerContainer
 }

@@ -6,7 +6,7 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import {iconContainer} from "../../styles/header/Header";
+import {iconContainer, header, logo} from "../../styles/header/Header";
 
 // utils imports
 import {handleProfileMenuOpen} from "../../utils/header/headerUtils";
@@ -27,10 +27,10 @@ const Header = (props) => {
 
     return (
         <Grid container>
-            <AppBar position="static">
+            <AppBar position="static" sx={header}>
                 <Toolbar>
                     <Grid item xs={3} sm={2} md={1} lg={1}>
-                        <Typography variant="h6">ChatUp</Typography>
+                        <Typography variant="h6" sx={logo}>ChatUp</Typography>
                     </Grid>
                     <Grid item xs={9} md={6} lg={5}>
                         <UserSearch

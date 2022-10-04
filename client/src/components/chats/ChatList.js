@@ -1,18 +1,24 @@
 import {useEffect} from "react";
 import {connect} from "react-redux";
 
+// util imports
 import {fetchChats} from "../../utils/chat/chatUtils";
 
-// util imports
-import {getChatAction} from "../../redux/actions";
+// component imports
+import ChatListItem from "./ChatListItem";
+
+// style imports
+import Grid from "@mui/material/Unstable_Grid2";
+import {chatListContainer, listHeading} from "../../styles/messenger/ChatList";
+import List from '@mui/material/List';
+import "../../styles/messenger/ChatList.css";
 
 const ChatList = (props) => {
 
     const {
         chatList,
         setChatList,
-        user,
-        getChatAction
+        user
     } = props;
 
     useEffect(() => {
@@ -20,18 +26,21 @@ const ChatList = (props) => {
     }, [user, setChatList]);
 
     return (
-        <div>
-            <h2>Chat List</h2>
-            <ul>
+        <Grid container sx={chatListContainer}>
+            <h4 style={listHeading}>CHAT LIST</h4>
+            <List>
             {
                 chatList === [] ? null :
                     chatList.map((chat, key) => {
-                        return <div key={key}>
+                        return <div key={key} className="chatListItemContainer">
                             {
                                 chat.users.map((chatUser, key) => {
                                     if (chatUser.nameAndSurname !== user.nameAndSurname) {
                                         return (
-                                            <li key={key} value={chatUser.nameAndSurname} onClick={() => getChatAction(user, chatUser._id)}>{chatUser.nameAndSurname}</li>
+                                            <ChatListItem
+                                                key={key}
+                                                chatUser={chatUser}
+                                            />
                                         );
                                     }
                                 })
@@ -39,8 +48,8 @@ const ChatList = (props) => {
                         </div>
                     })
             }
-            </ul>
-        </div>
+            </List>
+        </Grid>
     );
 }
 
@@ -50,4 +59,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {getChatAction})(ChatList);
+export default connect(mapStateToProps)(ChatList);

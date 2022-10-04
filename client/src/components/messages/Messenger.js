@@ -2,7 +2,7 @@ import {useState} from "react";
 
 // style imports
 import Grid from "@mui/material/Unstable_Grid2";
-import {messengerContainer, chatContainer} from "../../styles/messenger/Messenger";
+import {messengerContainer, chatContainer, headerContainer} from "../../styles/messenger/Messenger";
 
 // component imports
 import ChatList from "../chats/ChatList";
@@ -15,7 +15,7 @@ const Messenger = () => {
 
     return (
         <Grid container sx={messengerContainer}>
-            <Grid item>
+            <Grid item sx={headerContainer}>
                 <Header
                     chatList={chatList}
                     setChatList={setChatList}
@@ -23,14 +23,14 @@ const Messenger = () => {
             </Grid>
 
             <Grid item sx={chatContainer}>
-                <Grid item lg={3}>
+                <Grid item xs={3} s={2} sm={2} md={3} lg={3}>
                     <ChatList
                         chatList={chatList}
                         setChatList={setChatList}
                     />
                 </Grid>
 
-                <Grid item lg={9}>
+                <Grid item xs={9} s={10} sm={10} md={9} lg={9}>
                     <Chat/>
                 </Grid>
             </Grid>

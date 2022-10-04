@@ -1,0 +1,4 @@
+.chatListItemContainer:hover {
+     background-color: rgba(33, 33, 33, 0.2);
+     border-radius: 5px
+}
