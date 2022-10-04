@@ -15,7 +15,6 @@ import {button} from "../../styles/header/SearchInput";
 const UserSearch = (props) => {
 
     const {
-        setChat,
         chatList,
         setChatList,
         user
@@ -39,7 +38,6 @@ const UserSearch = (props) => {
                 anchorEl={anchorEl}
                 setAnchorEl={setAnchorEl}
                 searchedUsers={searchedUsers}
-                setChat={setChat}
                 chatList={chatList}
                 setChatList={setChatList}
             />

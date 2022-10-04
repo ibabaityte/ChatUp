@@ -1,20 +1,23 @@
 import {useEffect} from "react";
-import {fetchChats, getChat} from "../../utils/chat/chatUtils";
 import {connect} from "react-redux";
-import {socket} from "../../utils/socket/socketUtils";
+
+import {fetchChats} from "../../utils/chat/chatUtils";
+
+// util imports
+import {getChatAction} from "../../redux/actions";
 
 const ChatList = (props) => {
 
     const {
-        setChat,
         chatList,
         setChatList,
-        user
+        user,
+        getChatAction
     } = props;
 
     useEffect(() => {
-        fetchChats(user, setChat, socket, "", chatList, setChatList);
-    }, [setChat, user, setChatList]);
+        fetchChats(user, "", chatList, setChatList);
+    }, [user, setChatList]);
 
     return (
         <div>
@@ -23,18 +26,17 @@ const ChatList = (props) => {
             {
                 chatList === [] ? null :
                     chatList.map((chat, key) => {
-                        let name;
-                        let userId;
-                        if(chat.users[0].nameAndSurname === user.nameAndSurname) {
-                            name = chat.users[1].nameAndSurname;
-                            userId = chat.users[1]._id;
-                        } else {
-                            name = chat.users[0].nameAndSurname;
-                            userId = chat.users[0]._id;
-                        }
-                        return (
-                            <li key={key} value={name} onClick={() => getChat(user, setChat, socket, userId)}>{name}</li>
-                        );
+                        return <div key={key}>
+                            {
+                                chat.users.map((chatUser, key) => {
+                                    if (chatUser.nameAndSurname !== user.nameAndSurname) {
+                                        return (
+                                            <li key={key} value={chatUser.nameAndSurname} onClick={() => getChatAction(user, chatUser.userId)}>{chatUser.nameAndSurname}</li>
+                                        );
+                                    }
+                                })
+                            }
+                        </div>
                     })
             }
             </ul>
@@ -48,4 +50,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(ChatList);
+export default connect(mapStateToProps, {getChatAction})(ChatList);

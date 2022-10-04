@@ -1,11 +1,12 @@
 import axios from "axios";
 
 import {connectSocket} from "../socket/socketUtils";
+import {socket} from "../socket/socketUtils";
 
 const CREATE_CHAT_URL = process.env.REACT_APP_CREATE_CHAT;
 const FETCH_CHATS_URL = process.env.REACT_APP_FETCH_CHATS;
 
-const createChat = (user, socket, chatMember, setChat, chatList, setChatList) => {
+const createChat = (user, chatMember, getChatAction, chatList, setChatList) => {
     axios.post(CREATE_CHAT_URL, {userId: chatMember}, {
         headers: {
             "Authorization": user.token
@@ -13,14 +14,16 @@ const createChat = (user, socket, chatMember, setChat, chatList, setChatList) =>
     }).then(result => {
         let chatId = result.data.data._id;
         connectSocket(socket, chatId);
-        fetchChats(user, setChat, socket, chatMember, chatList, setChatList);
-        getChat(user, setChat, socket, chatMember);
+
+        let newChatList = [...chatList, result.data.data];
+        setChatList(newChatList);
+        getChatAction(user, chatMember);
     }).catch(err => {
         console.log(err);
     })
 }
 
-const fetchChats = (user, setChat, socket, receiver = "", chatList, setChatList) => {
+const fetchChats = (user, receiver = "", chatList, setChatList) => {
     axios.get(FETCH_CHATS_URL, {
         params: {
             "userId": receiver
@@ -41,8 +44,9 @@ const fetchChats = (user, setChat, socket, receiver = "", chatList, setChatList)
     })
 }
 
-const getChat = (user, setChat, socket, receiver = "") => {
-    axios.get(FETCH_CHATS_URL, {
+const getChat = async (user, receiver) => {
+    let chat;
+    await axios.get(FETCH_CHATS_URL, {
         params: {
             "userId": receiver
         },
@@ -50,12 +54,18 @@ const getChat = (user, setChat, socket, receiver = "") => {
             "Authorization": user.token
         }
     }).then(result => {
-        setChat(result.data[0]);
         connectSocket(socket, result.data[0]._id);
         socket.emit("fetch messages", result.data[0]._id);
+        chat = result.data[0]
     }).catch(err => {
         console.log(err);
-    })
+        chat = err;
+    });
+    return chat;
 }
 
-export {createChat, fetchChats, getChat}
+export {
+    createChat,
+    fetchChats,
+    getChat
+}

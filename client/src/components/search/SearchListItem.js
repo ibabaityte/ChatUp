@@ -2,7 +2,7 @@ import {connect} from "react-redux";
 
 // util imports
 import {createChat} from "../../utils/chat/chatUtils";
-import {socket} from "../../utils/socket/socketUtils";
+import {getChatAction} from "../../redux/actions";
 
 // style imports
 import Typography from "@mui/material/Typography";
@@ -12,17 +12,16 @@ const SearchListItem = (props) => {
 
     const {
         searchedUser,
-        setChat,
         chatList,
         setChatList,
-        user
+        user,
+        getChatAction
     } = props;
 
     return (
-        <Typography sx={typography} onClick={() => {createChat(user, socket, searchedUser._id, setChat, chatList, setChatList)}}>{searchedUser.nameAndSurname}</Typography>
+        <Typography sx={typography} onClick={() => {createChat(user, searchedUser._id, getChatAction, chatList, setChatList)}}>{searchedUser.nameAndSurname}</Typography>
     );
 }
-
 
 const mapStateToProps = (state) => {
     return {
@@ -30,4 +29,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(SearchListItem);
+export default connect(mapStateToProps, {getChatAction})(SearchListItem);

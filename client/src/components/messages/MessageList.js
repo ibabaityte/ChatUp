@@ -1,42 +1,33 @@
-import {useEffect} from "react";
-import {connect} from "react-redux";
-import {socket} from "../../utils/socket/socketUtils";
+import {useEffect, useState} from "react";
+import {messageReceivedSocket, socket} from "../../utils/socket/socketUtils";
 
-const MessageList = (props) => {
+const MessageList = () => {
 
-    const {
-        messages,
-        setMessages
-    } = props;
+    const [messages, setMessages] = useState([]);
 
     useEffect(() => {
+        socket.on("message received", (message) => messageReceivedSocket(message, messages, setMessages));
         socket.on("mostRecentMessages", messages => setMessages(messages));
-    }, [setMessages]);
+    }, [messages, setMessages]);
 
     return (
-      <div>
-          <h3>message list</h3>
-          {
-              messages.length < 1 ?
-                  <div>No messages</div>
-                  :
-                  messages.map((message, key) => {
-                      return (
-                          <div key={key}>
-                              <div><b>{message.author.nameAndSurname}</b></div>
-                              <div>{message.content}</div>
-                          </div>
-                      )
-                  })
-          }
-      </div>
+        <div>
+            <h3>message list</h3>
+            {
+                messages.length < 1 ?
+                    <div>No messages</div>
+                    :
+                    messages.map((message, key) => {
+                        return (
+                            <div key={key}>
+                                <div><b>{message.author.nameAndSurname}</b></div>
+                                <div>{message.content}</div>
+                            </div>
+                        )
+                    })
+            }
+        </div>
     );
 }
 
-const mapStateToProps = (state) => {
-    return {
-        socket: state.socket
-    }
-}
-
-export default connect(mapStateToProps)(MessageList);
+export default MessageList;

@@ -4,8 +4,6 @@ import {connect} from "react-redux";
 import SearchListItem from "./SearchListItem";
 
 // util imports
-import {createChat} from "../../utils/chat/chatUtils";
-import {socket} from "../../utils/socket/socketUtils";
 import {handleClose} from "../../utils/header/headerUtils";
 
 // style imports
@@ -19,10 +17,8 @@ const SearchList = (props) => {
         anchorEl,
         setAnchorEl,
         searchedUsers,
-        setChat,
         chatList,
-        setChatList,
-        user
+        setChatList
     } = props;
 
     const open = Boolean(anchorEl);
@@ -47,7 +43,6 @@ const SearchList = (props) => {
                         <SearchListItem
                             key={key}
                             searchedUser={searchedUser}
-                            setChat={setChat}
                             chatList={chatList}
                             setChatList={setChatList}
                         />

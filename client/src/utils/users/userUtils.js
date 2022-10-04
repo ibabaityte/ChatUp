@@ -39,7 +39,6 @@ const search = (keyword, user, setSearchedUsers, setAnchorEl) => {
         params: {keyword},
         headers: {"Authorization": user.token}
     }).then(result => {
-        console.log(result);
         setSearchedUsers(result.data);
         setAnchorEl(document.getElementsByClassName("search")[0]);
     }).catch(err => {
