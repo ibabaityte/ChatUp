@@ -44,7 +44,7 @@ const createChat = async (req, res) => {
             newChat.save()
                 .then(data => {
                     res.status(200).send({
-                        message: "Chat created successfully",
+                        message: "chat created successfully",
                         data: data
                     });
                 })

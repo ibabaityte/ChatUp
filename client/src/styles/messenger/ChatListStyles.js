@@ -1,17 +1,19 @@
 const chatListContainer = {
-    flexDirection: "column",
     backgroundColor: "#1976d2",
-    height: "100%",
-    marginRight: "8px",
-    padding: "0 24px",
-    borderRadius: "5px"
+    height: "calc(90vh - 35px)",
+    minHeight: "758px",
+    padding: {
+        sm: "24px 0",
+        md: "24px 24px"
+    },
+    borderRadius: "5px",
 }
 
-const chatListItemContainer = {
+const chatListItem = {
     display: "flex",
     flexDirection: "row",
     padding: "10px",
-    margin: "5px 0",
+    marginBottom: "15px",
     justifyContent: "center",
     alignItems: "center"
 }
@@ -19,21 +21,27 @@ const chatListItemContainer = {
 const nameSurname = {
     display: {
         xs: "none",
-        md: "block"
+        sm: "none",
+        md: "none",
+        lg: "block"
     },
     color: "white",
+    fontSize: "18px",
     letterSpacing: "1px",
     fontFamily: "sans-serif",
     cursor: "pointer"
 }
 
 const listHeading = {
+    display: "none",
     color: "white",
     fontFamily: "Roboto, sans-serif",
     fontWeight: "500",
+    fontSize: "20px",
     letterSpacing: "5px",
     textAlign: "center",
-    cursor: "default"
+    cursor: "default",
+    padding: "15px 0"
 }
 
 const avatar = {
@@ -42,7 +50,7 @@ const avatar = {
 
 export {
     chatListContainer,
-    chatListItemContainer,
+    chatListItem,
     nameSurname,
     listHeading,
     avatar

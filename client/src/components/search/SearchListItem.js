@@ -6,7 +6,7 @@ import {getChatAction} from "../../redux/actions";
 
 // style imports
 import Typography from "@mui/material/Typography";
-import {typography} from "../../styles/header/SearchList";
+import {typography} from "../../styles/header/SearchListStyles";
 
 const SearchListItem = (props) => {
 

@@ -8,8 +8,9 @@ import {fetchChats} from "../../utils/chat/chatUtils";
 import ChatListItem from "./ChatListItem";
 
 // style imports
-import Grid from "@mui/material/Unstable_Grid2";
-import {chatListContainer, listHeading} from "../../styles/messenger/ChatList";
+// import Grid from "@mui/material/Unstable_Grid2";
+import Grid from '@mui/material/Grid';
+import {chatListContainer, listHeading} from "../../styles/messenger/ChatListStyles";
 import List from '@mui/material/List';
 import "../../styles/messenger/ChatList.css";
 
@@ -26,9 +27,7 @@ const ChatList = (props) => {
     }, [user, setChatList]);
 
     return (
-        <Grid container sx={chatListContainer}>
-            <h4 style={listHeading}>CHAT LIST</h4>
-            <List>
+        <Grid item sx={chatListContainer}>
             {
                 chatList === [] ? null :
                     chatList.map((chat, key) => {
@@ -48,7 +47,6 @@ const ChatList = (props) => {
                         </div>
                     })
             }
-            </List>
         </Grid>
     );
 }

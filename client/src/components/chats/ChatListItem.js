@@ -4,10 +4,11 @@ import {connect} from "react-redux";
 import {getChatAction} from "../../redux/actions";
 
 // style imports
-import {Avatar, ListItemAvatar} from "@mui/material";
+import {Avatar} from "@mui/material";
 import ImageIcon from "@mui/icons-material/Image";
 import ListItem from "@mui/material/ListItem";
-import {chatListItemContainer, nameSurname, avatar} from "../../styles/messenger/ChatList";
+import {chatListItem, nameSurname, avatar} from "../../styles/messenger/ChatListStyles";
+import Grid from "@mui/material/Grid";
 
 const ChatListItem = (props) => {
 
@@ -18,12 +19,12 @@ const ChatListItem = (props) => {
     } = props;
 
     return (
-        <div style={chatListItemContainer}>
+        <Grid item sx={chatListItem}>
             <Avatar sx={avatar}>
                 <ImageIcon />
             </Avatar>
             <ListItem value={chatUser.nameAndSurname} sx={nameSurname} onClick={() => getChatAction(user, chatUser._id)}>{chatUser.nameAndSurname}</ListItem>
-        </div>
+        </Grid>
     );
 }
 

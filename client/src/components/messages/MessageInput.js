@@ -4,6 +4,12 @@ import {connect} from "react-redux";
 // util imports
 import {sendMessage} from "../../utils/message/utils";
 
+// style imports
+import {messageInput, messageInputContainer, sendButton} from "../../styles/chat/ChatStyles";
+import TextField from "@mui/material/TextField";
+import IconButton from '@mui/material/IconButton';
+import SendIcon from '@mui/icons-material/Send';
+
 const MessageInput = (props) => {
 
     const {
@@ -14,12 +20,18 @@ const MessageInput = (props) => {
     const [message, setMessage] = useState("");
 
     return (
-        <div>
-            <h3>Send a message</h3>
-            <form>
-                <input type="text" value={message} onChange={e => {setMessage(e.target.value)}}/>
-                <button onClick={(e) => {sendMessage(e, setMessage, message, chat, user.userId)}}>submit</button>
-            </form>
+        <div style={messageInputContainer}>
+            <TextField value={message}
+                       style={messageInput}
+                       variant="standard"
+                       InputProps={{disableUnderline: true}}
+                       placeholder="Send a message..."
+                       onChange={e => {setMessage(e.target.value)}}
+            />
+            <IconButton onClick={(e) => {sendMessage(e, setMessage, message, chat, user.userId)}}
+                        sx={sendButton}>
+                <SendIcon/>
+            </IconButton>
         </div>
     );
 }

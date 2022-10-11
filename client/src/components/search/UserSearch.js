@@ -10,7 +10,7 @@ import SearchList from "./SearchList";
 
 // style imports
 import Button from "@mui/material/Button";
-import {button} from "../../styles/header/SearchInput";
+import {button} from "../../styles/header/SearchInputStyles";
 
 const UserSearch = (props) => {
 
@@ -25,7 +25,7 @@ const UserSearch = (props) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     return (
-        <div>
+        <div style={{width: "100%"}}>
             <SearchInput
                 keyword={keyword}
                 setKeyword={setKeyword}

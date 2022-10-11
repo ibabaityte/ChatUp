@@ -1,6 +1,33 @@
-body {
-    margin: 0;
+* {
+    margin:0;
+    padding:0;
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.5);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(1,1,1,0.3);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(1,1,1,0.4);
+}
+
+.App {
+    height: calc(100vh - 30px);
+    width: 70%;
+    display: flex;
+    margin: 15px auto;
+    overflow: auto;
+}
+
 .logo {
     font-size: 70px;
     font-family: 'Raleway', sans-serif;
@@ -35,13 +62,14 @@ body {
     align-items: center;
 }
 
-
-@media screen and (max-width: 600px) {
-    .logo {
-        font-size: 50px
+@media screen and (max-width: 1024px) {
+    .App {
+        width: 80%
     }
-    .logoContainer {
-        width: 80%;
-        margin: 0 auto
+}
+
+@media screen and (max-width: 768px) {
+    .App {
+        width: 90%
     }
 }

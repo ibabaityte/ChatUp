@@ -1,5 +1,5 @@
 // style imports
-import {Search, search, SearchIconWrapper, StyledInputBase, input} from "../../styles/header/SearchInput";
+import {Search, search, SearchIconWrapper, StyledInputBase, input, searchIcon} from "../../styles/header/SearchInputStyles";
 import SearchIcon from "@mui/icons-material/Search";
 
 const SearchInput = (props) => {
@@ -12,7 +12,7 @@ const SearchInput = (props) => {
     return (
         <Search className="search" style={search}>
             <SearchIconWrapper>
-                <SearchIcon/>
+                <SearchIcon sx={searchIcon}/>
             </SearchIconWrapper>
             <StyledInputBase
                 style={input}

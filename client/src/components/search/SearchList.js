@@ -1,5 +1,3 @@
-import {connect} from "react-redux";
-
 // component imports
 import SearchListItem from "./SearchListItem";
 
@@ -7,9 +5,8 @@ import SearchListItem from "./SearchListItem";
 import {handleClose} from "../../utils/header/headerUtils";
 
 // style imports
-import Typography from "@mui/material/Typography";
 import {Popover} from "@mui/material";
-import {paper, typography} from "../../styles/header/SearchList";
+import {paper} from "../../styles/header/SearchListStyles";
 
 const SearchList = (props) => {
 

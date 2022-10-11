@@ -25,7 +25,12 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    color: "white"
 }));
+
+const searchIcon = {
+    color: "rgb(1,1,1,0.7)"
+}
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: 'inherit',
@@ -50,7 +55,6 @@ const input = {
 }
 
 const button = {
-    // backgroundColor: "rgba(212, 212, 212)"
     borderRadius: "20px",
     width: "75px",
     minWidth: "55px",
@@ -63,5 +67,6 @@ export {
     SearchIconWrapper,
     StyledInputBase,
     input,
-    button
+    button,
+    searchIcon
 }

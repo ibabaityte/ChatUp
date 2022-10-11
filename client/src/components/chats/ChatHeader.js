@@ -1,5 +1,8 @@
 import {connect} from "react-redux";
 
+// style imports
+import {chatHeader, chatMember} from "../../styles/chat/ChatStyles";
+
 const ChatHeader = (props) => {
 
     const {
@@ -8,18 +11,15 @@ const ChatHeader = (props) => {
     } = props;
 
     return (
-        <div>
-            <div>This is a conversation with:</div>
-            <div>
-                {
-                    chat.users ?
-                        chat.users.map((chatUser, key) => {
-                            return chatUser._id !== user.userId ?
-                                <div key={key}>{chatUser.nameAndSurname}</div> : null
-                        }) : null
-                }
-            </div>
-        </div>
+        <span>
+            {
+                chat.users ?
+                    chat.users.map((chatUser, key) => {
+                        return chatUser._id !== user.userId ?
+                            <p style={chatMember} key={key} >{chatUser.nameAndSurname}</p> : null
+                    }) : null
+            }
+        </span>
     );
 }
 

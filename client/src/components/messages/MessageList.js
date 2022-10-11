@@ -1,6 +1,13 @@
 import {useEffect, useState} from "react";
 import {messageReceivedSocket, socket} from "../../utils/socket/socketUtils";
 
+// component imports
+import NoMessagesContainer from "../chats/NoMessagesContainer";
+import Message from "../messages/Message";
+
+// style imports
+import {messageList} from "../../styles/chat/ChatStyles";
+
 const MessageList = () => {
 
     const [messages, setMessages] = useState([]);
@@ -10,19 +17,16 @@ const MessageList = () => {
         socket.on("mostRecentMessages", messages => setMessages(messages));
     }, [messages, setMessages]);
 
+
     return (
-        <div>
-            <h3>message list</h3>
+        <div id="message-list" style={messageList}>
             {
                 messages.length < 1 ?
-                    <div>No messages</div>
+                    <NoMessagesContainer/>
                     :
                     messages.map((message, key) => {
                         return (
-                            <div key={key}>
-                                <div><b>{message.author.nameAndSurname}</b></div>
-                                <div>{message.content}</div>
-                            </div>
+                            <Message key={key} author={message.author} message={message.content}/>
                         )
                     })
             }
