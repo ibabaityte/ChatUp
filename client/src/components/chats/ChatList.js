@@ -3,27 +3,28 @@ import {connect} from "react-redux";
 
 // util imports
 import {fetchChats} from "../../utils/chat/chatUtils";
+import {getChatAction} from "../../redux/actions";
 
 // component imports
 import ChatListItem from "./ChatListItem";
 
 // style imports
-// import Grid from "@mui/material/Unstable_Grid2";
 import Grid from '@mui/material/Grid';
-import {chatListContainer, listHeading} from "../../styles/messenger/ChatListStyles";
-import List from '@mui/material/List';
+import {chatListContainer} from "../../styles/messenger/ChatListStyles";
 import "../../styles/messenger/ChatList.css";
 
 const ChatList = (props) => {
 
     const {
+        chat,
+        getChatAction,
         chatList,
         setChatList,
         user
     } = props;
 
     useEffect(() => {
-        fetchChats(user, "", chatList, setChatList);
+        fetchChats(user, chat, getChatAction, chatList, setChatList);
     }, [user, setChatList]);
 
     return (
@@ -53,8 +54,9 @@ const ChatList = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        user: state.user
+        user: state.user,
+        chat: state.chat
     }
 }
 
-export default connect(mapStateToProps)(ChatList);
+export default connect(mapStateToProps, {getChatAction})(ChatList);

@@ -23,22 +23,19 @@ const createChat = (user, chatMember, getChatAction, chatList, setChatList) => {
     })
 }
 
-const fetchChats = (user, receiver = "", chatList, setChatList) => {
+const fetchChats = (user, chat, getChatAction, chatList, setChatList) => {
     axios.get(FETCH_CHATS_URL, {
-        params: {
-            "userId": receiver
-        },
         headers: {
             "Authorization": user.token
         }
     }).then(result => {
-        if (result.data.length === 1) {
-            let newChatList = [...chatList];
-            newChatList.push(result.data[0]);
-            setChatList(newChatList);
+        console.log(result.data[0].users[1]._id);
+        if(chat.users === undefined) {
+            getChatAction(user, result.data[0].users[1]._id);
         } else {
-            setChatList(result.data);
+            getChatAction(user, chat.users[1]._id);
         }
+        setChatList(result.data);
     }).catch(err => {
         console.log(err);
     })

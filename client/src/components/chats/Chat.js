@@ -1,11 +1,20 @@
+import {useEffect} from "react";
+import {connect} from "react-redux";
+
+// util imports
+import {getChatAction} from "../../redux/actions";
+
 // component imports
 import MessageInput from "../messages/MessageInput";
 import MessageList from "../messages/MessageList";
 import ChatHeader from "./ChatHeader";
 
+// style imports
 import {chatContainer, chatHeader, messageListContainer} from "../../styles/chat/ChatStyles";
 
-const Chat = () => {
+const Chat = (props) => {
+
+    const {chatList, user, chat, getChatAction} = props;
 
     return (
         <div style={chatContainer}>
@@ -22,4 +31,11 @@ const Chat = () => {
     );
 }
 
-export default Chat;
+const mapStateToProps = (state) => {
+    return {
+        user: state.user,
+        chat: state.chat
+    }
+}
+
+export default connect(mapStateToProps, {getChatAction})(Chat);

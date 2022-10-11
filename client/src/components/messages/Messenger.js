@@ -37,7 +37,9 @@ const Messenger = () => {
             </Grid>
 
             <Grid item xs={9} sm={10} md={9} lg={8} xl={9} sx={chatContainer}>
-                <Chat/>
+                <Chat
+                    chatList={chatList}
+                />
             </Grid>
         </Grid>
     );
