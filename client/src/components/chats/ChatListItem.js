@@ -7,7 +7,7 @@ import {getChatAction} from "../../redux/actions";
 import {Avatar} from "@mui/material";
 import ImageIcon from "@mui/icons-material/Image";
 import ListItem from "@mui/material/ListItem";
-import {chatListItem, nameSurname, avatar} from "../../styles/messenger/ChatListStyles";
+import {chatListItem, nameSurname, nameAndSurnameContainer, avatar} from "../../styles/messenger/ChatListStyles";
 import Grid from "@mui/material/Grid";
 
 const ChatListItem = (props) => {
@@ -19,11 +19,15 @@ const ChatListItem = (props) => {
     } = props;
 
     return (
-        <Grid item sx={chatListItem}>
-            <Avatar sx={avatar}>
-                <ImageIcon />
-            </Avatar>
-            <ListItem value={chatUser.nameAndSurname} sx={nameSurname} onClick={() => getChatAction(user, chatUser._id)}>{chatUser.nameAndSurname}</ListItem>
+        <Grid container sx={chatListItem}>
+            <Grid item xs={12} sm={12} md={12} lg={3} xl={2}>
+                <Avatar sx={avatar}>
+                    <ImageIcon />
+                </Avatar>
+            </Grid>
+            <Grid item lg={9} xl={10} sx={{nameAndSurnameContainer}}>
+                <ListItem value={chatUser.nameAndSurname} sx={nameSurname} onClick={() => getChatAction(user, chatUser._id)}>{chatUser.nameAndSurname}</ListItem>
+            </Grid>
         </Grid>
     );
 }

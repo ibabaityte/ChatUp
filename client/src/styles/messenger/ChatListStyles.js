@@ -7,6 +7,9 @@ const chatListContainer = {
         md: "24px 24px"
     },
     borderRadius: "5px",
+    width: "100%",
+    overflow: "auto",
+    overflowWrap: "break-word"
 }
 
 const chatListItem = {
@@ -15,7 +18,9 @@ const chatListItem = {
     padding: "10px",
     marginBottom: "15px",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    maxWidth: "254px",
+    overflowWrap: "break-word"
 }
 
 const nameSurname = {
@@ -29,29 +34,30 @@ const nameSurname = {
     fontSize: "18px",
     letterSpacing: "1px",
     fontFamily: "sans-serif",
-    cursor: "pointer"
+    cursor: "pointer",
+    padding: "0 0 0 10px",
+    overflowWrap: "break-word"
 }
 
-const listHeading = {
-    display: "none",
-    color: "white",
-    fontFamily: "Roboto, sans-serif",
-    fontWeight: "500",
-    fontSize: "20px",
-    letterSpacing: "5px",
-    textAlign: "center",
-    cursor: "default",
-    padding: "15px 0"
+const nameAndSurnameContainer = {
+    overflowWrap: "break-word",
+    display: {
+        xs: "none",
+        sm: "none",
+        md: "none",
+        lg: "block"
+    },
 }
 
 const avatar = {
-    cursor: "pointer"
+    cursor: "pointer",
+    margin: "auto"
 }
 
 export {
     chatListContainer,
     chatListItem,
     nameSurname,
-    listHeading,
+    nameAndSurnameContainer,
     avatar
 }

@@ -13,6 +13,7 @@ const chatListContainer = {
     justifyContent: "flex-start",
     height: "calc(90vh - 35px)",
     minHeight: "758px",
+    overflowWrap: "break-word"
 }
 
 const chatContainer = {

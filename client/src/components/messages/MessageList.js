@@ -15,6 +15,10 @@ const MessageList = () => {
     useEffect(() => {
         socket.on("message received", (message) => messageReceivedSocket(message, messages, setMessages));
         socket.on("mostRecentMessages", messages => setMessages(messages));
+        setTimeout(() => {
+            let msgList = document.getElementById("message-list");
+            msgList.scrollTop = msgList.scrollHeight;
+        }, 10);
     }, [messages, setMessages]);
 
 

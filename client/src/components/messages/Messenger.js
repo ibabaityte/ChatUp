@@ -28,7 +28,7 @@ const Messenger = () => {
             </Grid>
 
             <Grid item xs={3} s={2} sm={2} md={3} lg={4} xl={3} sx={chatListContainer}>
-                <div style={{marginRight: "15px"}}>
+                <div style={{marginRight: "15px", overflowWrap: "break-word"}}>
                     <ChatList
                         chatList={chatList}
                         setChatList={setChatList}

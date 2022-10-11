@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 
 // style imports
-import {messageContainer, authorMessage, friendMessage, nameAndSurname} from "../../styles/chat/ChatStyles";
+import {messageContainer, authorMessage, friendMessage, nameAndSurname, messageText} from "../../styles/chat/ChatStyles";
 
 const Message = (props) => {
 
@@ -18,7 +18,7 @@ const Message = (props) => {
             ...messageContainer,
             ...isAuthor ? authorMessage : friendMessage}}>
             <div style={nameAndSurname}><b>{author.nameAndSurname}</b></div>
-            <div>{message}</div>
+            <div style={messageText}>{message}</div>
         </div>
     )
 }

@@ -14,8 +14,6 @@ import {chatContainer, chatHeader, messageListContainer} from "../../styles/chat
 
 const Chat = (props) => {
 
-    const {chatList, user, chat, getChatAction} = props;
-
     return (
         <div style={chatContainer}>
             <div style={chatHeader}>

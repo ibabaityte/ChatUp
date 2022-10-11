@@ -4,14 +4,16 @@ const chatContainer = {
     height: "calc(90vh - 35px)",
     minHeight: "758px",
     borderRadius: "5px",
+    overflowWrap: "break-word"
 }
 
 const chatHeader = {
-    height: "10%",
+    minHeight: "10%",
     backgroundColor: "rgba(25, 118, 210)",
     borderRadius: "5px",
     display: "flex",
     alignItems: "center",
+    overflowX: "auto"
 }
 const messageListContainer = {
     height: "80%"
@@ -35,6 +37,7 @@ const chatMember = {
     fontSize: "18px",
     display: "inline-block",
     paddingLeft: "15px",
+    overflowWrap: "break-word"
 }
 
 const noMessagesContainer = {
@@ -93,6 +96,10 @@ const nameAndSurname = {
     marginBottom: "10px"
 }
 
+const messageText = {
+    overflowWrap: "break-word"
+}
+
 export {
     chatContainer,
     chatHeader,
@@ -107,5 +114,6 @@ export {
     messageContainer,
     authorMessage,
     friendMessage,
-    nameAndSurname
+    nameAndSurname,
+    messageText
 };

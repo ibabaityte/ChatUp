@@ -11,7 +11,7 @@ const ChatHeader = (props) => {
     } = props;
 
     return (
-        <span>
+        <span style={{overflowWrap: "break-word"}}>
             {
                 chat.users ?
                     chat.users.map((chatUser, key) => {
