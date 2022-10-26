@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 
 // style imports
-import {chatHeader, chatMember} from "../../styles/chat/ChatStyles";
+import {chatMember} from "../../styles/chat/ChatStyles";
 
 const ChatHeader = (props) => {
 

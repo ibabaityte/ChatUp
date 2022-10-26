@@ -1,4 +1,3 @@
-import {useEffect} from "react";
 import {connect} from "react-redux";
 
 // util imports
@@ -12,7 +11,7 @@ import ChatHeader from "./ChatHeader";
 // style imports
 import {chatContainer, chatHeader, messageListContainer} from "../../styles/chat/ChatStyles";
 
-const Chat = (props) => {
+const Chat = () => {
 
     return (
         <div style={chatContainer}>

@@ -19,14 +19,14 @@ const ChatListItem = (props) => {
     } = props;
 
     return (
-        <Grid container sx={chatListItem}>
+        <Grid container sx={chatListItem} onClick={() => getChatAction(user, chatUser._id)}>
             <Grid item xs={12} sm={12} md={12} lg={3} xl={2}>
                 <Avatar sx={avatar}>
                     <ImageIcon />
                 </Avatar>
             </Grid>
             <Grid item lg={9} xl={10} sx={{nameAndSurnameContainer}}>
-                <ListItem value={chatUser.nameAndSurname} sx={nameSurname} onClick={() => getChatAction(user, chatUser._id)}>{chatUser.nameAndSurname}</ListItem>
+                <ListItem value={chatUser.nameAndSurname} sx={nameSurname}>{chatUser.nameAndSurname}</ListItem>
             </Grid>
         </Grid>
     );

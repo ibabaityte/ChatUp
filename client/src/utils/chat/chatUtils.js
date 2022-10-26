@@ -29,7 +29,7 @@ const fetchChats = (user, chat, getChatAction, chatList, setChatList) => {
             "Authorization": user.token
         }
     }).then(result => {
-        console.log(result.data[0].users[1]._id);
+        // console.log(result.data[0].users[1]._id);
         if(chat.users === undefined) {
             getChatAction(user, result.data[0].users[1]._id);
         } else {

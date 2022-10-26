@@ -8,6 +8,17 @@ export const loginAction = (user) => async (dispatch) => {
             type: "LOGIN",
             payload: userCredentials
         });
+    } else {
+        dispatch({
+            type: "LOGIN",
+            payload: {}
+        });
+    }
+}
+
+export const logoutAction = () => {
+    return {
+        type: "LOGOUT"
     }
 }
 

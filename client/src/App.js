@@ -9,7 +9,7 @@ import PublicRoutes from "./components/PublicRoutes";
 const App = () => {
 
     return (
-        <div className="App">
+        <div>
             <Routes>
                 <Route element={<PublicRoutes/>}>
                     <Route path="/*" element={<StartupPage/>}/>
