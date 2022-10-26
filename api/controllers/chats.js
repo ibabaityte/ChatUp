@@ -1,6 +1,8 @@
 import Chats from "../models/chat.js";
 
+// we fetch chats in two cases: when page loads (we fetch all chats) or when we try to c
 const fetchChatsConfig = (req) => {
+    console.log("fetch chat");
     if(!req.query.userId) {
         return {users: req.userId};
     } else {

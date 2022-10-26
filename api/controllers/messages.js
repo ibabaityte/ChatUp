@@ -1,4 +1,5 @@
 import Message from "../models/message.js";
+import {io} from "../index.js";
 
 const fetchMessages = (req, res) => {
     Message.find({chat: req.query.chatId}).populate("author").populate("author", "-password").sort({_id: -1}).limit(10)
@@ -13,4 +14,29 @@ const fetchMessages = (req, res) => {
         })
 }
 
-export default {fetchMessages}
+const createMessage = async (req, res) => {
+    const {message, chat, authorId} = req.body;
+
+    if(!message || message === "") {
+        res.status(400).send({
+            message: "A message can't be empty. Please type something in and hit send."
+        })
+    } else {
+        const newMessage = new Message(
+            {
+                author: authorId,
+                chat: chat._id,
+                content: message,
+            }
+        )
+        await newMessage.populate("author");
+        newMessage.save().then(() => {
+            res.status(200).send({
+                message: "Message sent successfully"
+            });
+            io.to(chat._id).emit("message received", newMessage);
+        }).catch(error => console.log(error));
+    }
+}
+
+export default {fetchMessages, createMessage}

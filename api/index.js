@@ -5,7 +5,7 @@ import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import {Server} from "socket.io";
 
-import {getRecentMessages, joinChat, newMessage} from "./utils/socketUtils.js";
+import {getRecentMessages, joinChat} from "./utils/socketUtils.js";
 
 import UserRoutes from "./routes/users.js"
 import ChatRoutes from "./routes/chats.js"
@@ -38,7 +38,7 @@ const server = api.listen(port, () => {
     console.log("Server listening on port " + port);
 });
 
-const io = new Server(server, {
+export const io = new Server(server, {
     pingTimeout: 6000,
     cors: {
         origin: "http://localhost:3000"
@@ -48,6 +48,4 @@ const io = new Server(server, {
 io.sockets.on("connect", (socket) => {
     socket.on("fetch messages", (chatId) => getRecentMessages(socket, chatId));
     socket.on("join chat", (room) => joinChat(room, socket, io));
-    socket.on("new message", (data) => newMessage(data, io));
 });
-
