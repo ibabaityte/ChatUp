@@ -1,5 +1,4 @@
-import {useState, useEffect} from "react";
-import {socket} from "../../utils/socket/socketUtils";
+import {useState} from "react";
 
 // style imports
 import Grid from '@mui/material/Grid';
@@ -18,10 +17,6 @@ import Header from "../header/Header";
 const Messenger = () => {
 
     const [chatList, setChatList] = useState([]);
-
-    useEffect(() => {
-        socket.on("nx", error => console.log(error))
-    }, [])
 
     return (
         <div className="App">

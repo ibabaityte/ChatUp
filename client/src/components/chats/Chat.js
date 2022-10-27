@@ -1,4 +1,5 @@
 import {connect} from "react-redux";
+import {useEffect} from "react";
 
 // util imports
 import {getChatAction} from "../../redux/actions";
@@ -11,7 +12,19 @@ import ChatHeader from "./ChatHeader";
 // style imports
 import {chatContainer, chatHeader, messageListContainer} from "../../styles/chat/ChatStyles";
 
-const Chat = () => {
+const Chat = (props) => {
+
+    const {
+        chatList
+    } = props;
+
+    // console.log(chatList[0].users);
+
+    // useEffect(() => {
+    //     if(chatList.users.length > 0) {
+    //         getChatAction(user, chatList.users[0]._id);
+    //     }
+    // }, [])
 
     return (
         <div style={chatContainer}>

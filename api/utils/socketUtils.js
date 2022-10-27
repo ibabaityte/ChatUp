@@ -1,7 +1,14 @@
 import axios from "axios";
 
-const getRecentMessages = (socket, id) => {
-    axios.get("http://localhost:8080/messages/fetchMessages", {params: {chatId: id}}).then(data => {
+const getRecentMessages = (socket, id, user) => {
+    axios.get("http://localhost:8080/messages/fetchMessages", {
+        params: {
+            chatId: id
+        },
+        headers: {
+            "Authorization": user.token
+        }
+    }).then(data => {
         socket.emit("mostRecentMessages", data.data.reverse());
     }).catch(err => {
         console.log(err);
@@ -15,7 +22,8 @@ const joinChat = (room, socket, io) => {
         // will handle later when front error handling is implemented
     } else {
         socket.join(room.id);
-        io.emit("user joined", "user joined");
+        //dont use it in the front yet
+        // io.emit("user joined", "user joined");
     }
 }
 

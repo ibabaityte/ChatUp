@@ -32,7 +32,12 @@ const fetchChats = (user, chat, getChatAction, chatList, setChatList) => {
         // if(chat.users === undefined) {
         // getChatAction(user, result.data[0].users[1]._id);
         // }
-        getChatAction(user, chat.users[1]._id);
+
+        // if there are connected chats - connect to the first one
+        if(chat.users.length > 0) {
+            getChatAction(user, chat.users[0]._id);
+        }
+        // set chat list
         setChatList(result.data);
     }).catch(err => {
         console.log(err);
@@ -50,7 +55,7 @@ const getChat = async (user, receiver) => {
         }
     }).then(result => {
         connectSocket(socket, result.data[0]._id);
-        socket.emit("fetch messages", result.data[0]._id);
+        socket.emit("fetch messages", result.data[0]._id, user);
         chat = result.data[0]
     }).catch(err => {
         console.log(err);

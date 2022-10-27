@@ -2,7 +2,7 @@ import {useState} from "react";
 import {connect} from "react-redux";
 
 // util imports
-import {sendMessage} from "../../utils/message/utils";
+import {createMessage} from "../../utils/message/utils";
 
 // style imports
 import {messageInput, messageInputContainer, sendButton} from "../../styles/chat/ChatStyles";
@@ -28,7 +28,7 @@ const MessageInput = (props) => {
                        placeholder="Send a message..."
                        onChange={e => {setMessage(e.target.value)}}
             />
-            <IconButton onClick={(e) => {sendMessage(e, setMessage, message, chat, user.userId)}}
+            <IconButton onClick={(e) => {createMessage(e, setMessage, message, chat, user.userId)}}
                         sx={sendButton}>
                 <SendIcon/>
             </IconButton>
