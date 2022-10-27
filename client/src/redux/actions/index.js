@@ -11,7 +11,7 @@ export const loginAction = (user) => async (dispatch) => {
     } else {
         dispatch({
             type: "LOGIN",
-            payload: {}
+            payload: null
         });
     }
 }
@@ -22,8 +22,10 @@ export const logoutAction = () => {
     }
 }
 
-export const getChatAction = (user, userId) => async (dispatch) =>{
-    let chat = await getChat(user, userId);
+export const getChatAction = (user, userId, setMessages) => async (dispatch) => {
+    // console.log("action");
+    // console.log(setMessages);
+    let chat = await getChat(user, userId, setMessages);
     dispatch({
         type: "SET_CHAT",
         payload: chat

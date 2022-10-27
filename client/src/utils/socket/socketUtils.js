@@ -5,7 +5,7 @@ const connectSocket = (socket, chatId) => {
     socket.emit("join chat", {id: chatId});
 }
 
-const messageReceivedSocket = (message, messages, setMessages) => {
+const messageReceived = (message, messages, setMessages) => {
     try {
         if(messages !== []) {
             const newMessages = [...messages, message];
@@ -18,4 +18,4 @@ const messageReceivedSocket = (message, messages, setMessages) => {
 
 export const socket = io.connect(endpoint);
 
-export {connectSocket, messageReceivedSocket}
+export {connectSocket, messageReceived}

@@ -5,7 +5,7 @@ import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import {Server} from "socket.io";
 
-import {getRecentMessages, joinChat} from "./utils/socketUtils.js";
+import {joinChat} from "./utils/socketUtils.js";
 
 import UserRoutes from "./routes/users.js"
 import ChatRoutes from "./routes/chats.js"
@@ -46,6 +46,6 @@ export const io = new Server(server, {
 });
 
 io.sockets.on("connect", (socket) => {
-    socket.on("fetch messages", (chatId, user) => getRecentMessages(socket, chatId, user));
+    // socket.on("fetch messages", (chatId, user) => getRecentMessages(socket, chatId, user));
     socket.on("join chat", (room) => joinChat(room, socket, io));
 });

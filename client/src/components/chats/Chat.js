@@ -15,16 +15,24 @@ import {chatContainer, chatHeader, messageListContainer} from "../../styles/chat
 const Chat = (props) => {
 
     const {
-        chatList
+        user,
+        chatList,
+        messages,
+        setMessages,
+        getChatAction
     } = props;
 
-    // console.log(chatList[0].users);
-
-    // useEffect(() => {
-    //     if(chatList.users.length > 0) {
-    //         getChatAction(user, chatList.users[0]._id);
-    //     }
-    // }, [])
+    useEffect(() => {
+        // if(chatList !== undefined){
+        //     getChatAction(user, chatList[0].users[0]._id);
+        // }
+        // if(chatList.users.length > 0) {
+        //     getChatAction(user, chatList.users[0]._id);
+        // }
+        if(chatList[0] !== undefined) {
+            getChatAction(user, chatList[0].users[0]._id);
+        }
+    }, [chatList])
 
     return (
         <div style={chatContainer}>
@@ -32,7 +40,10 @@ const Chat = (props) => {
                 <ChatHeader/>
             </div>
             <div style={messageListContainer}>
-                <MessageList/>
+                <MessageList
+                    messages={messages}
+                    setMessages={setMessages}
+                />
             </div>
             <div style={{height: "10%"}}>
                 <MessageInput/>

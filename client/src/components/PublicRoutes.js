@@ -3,7 +3,7 @@ import {Navigate, Outlet} from "react-router-dom";
 
 const PublicRoutes = (props) => {
     const {user} = props;
-    return user.email !== null ? <Navigate to="/messenger"/> : <Outlet/>
+    return user === null ? <Outlet/> : <Navigate to="/messenger"/>
 }
 
 const mapStateToProps = (state) => {

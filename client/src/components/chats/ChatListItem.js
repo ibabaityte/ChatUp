@@ -14,12 +14,13 @@ const ChatListItem = (props) => {
 
     const {
         chatUser,
+        setMessages,
         user,
         getChatAction
     } = props;
 
     return (
-        <Grid container sx={chatListItem} onClick={() => getChatAction(user, chatUser._id)}>
+        <Grid container sx={chatListItem} onClick={() => getChatAction(user, chatUser._id, setMessages)}>
             <Grid item xs={12} sm={12} md={12} lg={3} xl={2}>
                 <Avatar sx={avatar}>
                     <ImageIcon />

@@ -17,6 +17,7 @@ import Header from "../header/Header";
 const Messenger = () => {
 
     const [chatList, setChatList] = useState([]);
+    const [messages, setMessages] = useState([]);
 
     return (
         <div className="App">
@@ -33,6 +34,7 @@ const Messenger = () => {
                         <ChatList
                             chatList={chatList}
                             setChatList={setChatList}
+                            setMessages={setMessages}
                         />
                     </div>
                 </Grid>
@@ -40,6 +42,8 @@ const Messenger = () => {
                 <Grid item xs={9} sm={10} md={9} lg={8} xl={9} sx={chatContainer}>
                     <Chat
                         chatList={chatList}
+                        messages={messages}
+                        setMessages={setMessages}
                     />
                 </Grid>
             </Grid>

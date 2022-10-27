@@ -2,6 +2,7 @@ import axios from "axios";
 
 import {connectSocket} from "../socket/socketUtils";
 import {socket} from "../socket/socketUtils";
+import {getRecentMessages} from "../message/utils";
 
 const CREATE_CHAT_URL = process.env.REACT_APP_CREATE_CHAT;
 const FETCH_CHATS_URL = process.env.REACT_APP_FETCH_CHATS;
@@ -15,6 +16,7 @@ const createChat = (user, chatMember, getChatAction, chatList, setChatList) => {
         let chatId = result.data.data._id;
         connectSocket(socket, chatId);
 
+        // update chat list
         let newChatList = [...chatList, result.data.data];
         setChatList(newChatList);
         getChatAction(user, chatMember);
@@ -29,14 +31,10 @@ const fetchChats = (user, chat, getChatAction, chatList, setChatList) => {
             "Authorization": user.token
         }
     }).then(result => {
-        // if(chat.users === undefined) {
-        // getChatAction(user, result.data[0].users[1]._id);
-        // }
-
         // if there are connected chats - connect to the first one
-        if(chat.users.length > 0) {
-            getChatAction(user, chat.users[0]._id);
-        }
+        // if(chat.users.length > 0) {
+        //     getChatAction(user, chat.users[0]._id);
+        // }
         // set chat list
         setChatList(result.data);
     }).catch(err => {
@@ -44,7 +42,8 @@ const fetchChats = (user, chat, getChatAction, chatList, setChatList) => {
     })
 }
 
-const getChat = async (user, receiver) => {
+const getChat = async (user, receiver, setMessages) => {
+    // console.log(setMessages);
     let chat;
     await axios.get(FETCH_CHATS_URL, {
         params: {
@@ -54,9 +53,10 @@ const getChat = async (user, receiver) => {
             "Authorization": user.token
         }
     }).then(result => {
+        getRecentMessages(result.data[0]._id, user, setMessages);
         connectSocket(socket, result.data[0]._id);
-        socket.emit("fetch messages", result.data[0]._id, user);
         chat = result.data[0]
+        // socket.emit("fetch messages", result.data[0]._id, user);
     }).catch(err => {
         console.log(err);
         chat = err;

@@ -20,6 +20,7 @@ const ChatList = (props) => {
         getChatAction,
         chatList,
         setChatList,
+        setMessages,
         user
     } = props;
 
@@ -40,6 +41,7 @@ const ChatList = (props) => {
                                             <ChatListItem
                                                 key={key}
                                                 chatUser={chatUser}
+                                                setMessages={setMessages}
                                             />
                                         );
                                     }

@@ -1,21 +1,3 @@
-import axios from "axios";
-
-const getRecentMessages = (socket, id, user) => {
-    axios.get("http://localhost:8080/messages/fetchMessages", {
-        params: {
-            chatId: id
-        },
-        headers: {
-            "Authorization": user.token
-        }
-    }).then(data => {
-        socket.emit("mostRecentMessages", data.data.reverse());
-    }).catch(err => {
-        console.log(err);
-        socket.emit("mostRecentMessages", []);
-    })
-}
-
 const joinChat = (room, socket, io) => {
     if(room === undefined) {
         return null;
@@ -28,6 +10,5 @@ const joinChat = (room, socket, io) => {
 }
 
 export {
-    getRecentMessages,
     joinChat
 }

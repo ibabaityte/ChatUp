@@ -1,5 +1,7 @@
 import {useEffect, useState} from "react";
-import {messageReceivedSocket, socket} from "../../utils/socket/socketUtils";
+import {connect} from "react-redux";
+import {messageReceived, socket} from "../../utils/socket/socketUtils";
+import {getRecentMessages} from "../../utils/message/utils";
 
 // component imports
 import NoMessagesContainer from "../chats/NoMessagesContainer";
@@ -8,18 +10,28 @@ import Message from "../messages/Message";
 // style imports
 import {messageList} from "../../styles/chat/ChatStyles";
 
-const MessageList = () => {
+const MessageList = (props) => {
 
-    const [messages, setMessages] = useState([]);
+    const {
+        messages,
+        setMessages,
+        chat,
+        user
+    } = props;
 
     useEffect(() => {
-        socket.on("message received", (message) => messageReceivedSocket(message, messages, setMessages));
-        socket.on("mostRecentMessages", messages => setMessages(messages));
+        socket.on("message received", (message) => messageReceived(message, messages, setMessages));
+        getRecentMessages(chat._id, user, setMessages);
+        // socket.on("mostRecentMessages", messages => setMessages(messages));
+    }, [chat, user]);
+
+    useEffect(() => {
+        // scrolls the message list to the bottom
         setTimeout(() => {
             let msgList = document.getElementById("message-list");
             msgList.scrollTop = msgList.scrollHeight;
         }, 10);
-    }, [messages, setMessages]);
+    }, [messages])
 
 
     return (
@@ -38,4 +50,11 @@ const MessageList = () => {
     );
 }
 
-export default MessageList;
+const mapStateToProps = (state) => {
+    return {
+        user: state.user,
+        chat: state.chat
+    }
+}
+
+export default connect(mapStateToProps)(MessageList);

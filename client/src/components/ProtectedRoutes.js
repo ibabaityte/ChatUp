@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 
 const ProtectedRoutes = (props) => {
     const {user} = props;
-    return user.email !== null ? <Outlet/> : <Navigate to="/"/>
+    return user === null ? <Navigate to="/"/> : <Outlet/>
 }
 
 const mapStateToProps = (state) => {
