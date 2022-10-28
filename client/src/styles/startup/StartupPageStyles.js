@@ -14,9 +14,9 @@ const GradientBg = keyframes`
 const startupBg = {
     width: "100vw",
     height: "95vh",
-    background: "linear-gradient(0deg, #ffffff, #ffffff, #b5fff2, #8affeb, #32d1e6)",
-    backgroundSize: "150% 150%",
-    animation: `${GradientBg} 9s ease infinite`
+    // background: "linear-gradient(0deg, #ffffff, #ffffff, #b5fff2, #8affeb, #32d1e6)",
+    // backgroundSize: "150% 150%",
+    // animation: `${GradientBg} 9s ease infinite`
 }
 
 const gridItem = {

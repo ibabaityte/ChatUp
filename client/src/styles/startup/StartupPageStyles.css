@@ -1,6 +1,24 @@
+@keyframes gradientBg {
+    0% {
+        background-position: 50% 0;
+    }
+    50% {
+        background-position: 30% 100%;
+    }
+    100% {
+        background-position: 50% 0;
+    }
+}
+
 * {
     margin:0;
     padding:0;
+}
+
+body {
+    background: linear-gradient(0deg, #ffffff, #ffffff, #b5fff2, #8affeb, #32d1e6);
+    background-size: 150% 150%;
+    animation: GradientBg 9s ease infinite
 }
 
 ::-webkit-scrollbar {
