@@ -7,19 +7,23 @@ import {getRecentMessages} from "../message/utils";
 const CREATE_CHAT_URL = process.env.REACT_APP_CREATE_CHAT;
 const FETCH_CHATS_URL = process.env.REACT_APP_FETCH_CHATS;
 
-const createChat = (user, chatMember, getChatAction, chatList, setChatList) => {
+const createChat = (user, chatMember, getChatAction, chatList, setChatList, setMessages) => {
     axios.post(CREATE_CHAT_URL, {userId: chatMember}, {
         headers: {
             "Authorization": user.token
         }
     }).then(result => {
-        let chatId = result.data.data._id;
-        connectSocket(socket, chatId);
+        // let chatId = result.data.data._id;
+        // connectSocket(socket, chatId);
+        // fetch
+        // getRecentMessages(chatId, user, setMessages);
 
         // update chat list
         let newChatList = [...chatList, result.data.data];
         setChatList(newChatList);
-        getChatAction(user, chatMember);
+
+        // get this chat in ui
+        getChatAction(user, chatMember, setMessages);
     }).catch(err => {
         console.log(err);
     })

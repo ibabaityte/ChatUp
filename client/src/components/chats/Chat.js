@@ -32,7 +32,7 @@ const Chat = (props) => {
         if(chatList[0] !== undefined) {
             getChatAction(user, chatList[0].users[0]._id);
         }
-    }, [chatList])
+    }, [])
 
     return (
         <div style={chatContainer}>

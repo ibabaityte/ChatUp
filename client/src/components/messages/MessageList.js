@@ -33,7 +33,7 @@ const MessageList = (props) => {
 
     useEffect(() => {
         getRecentMessages(chat._id, user, setMessages);
-    }, [chat, user])
+    }, [])
 
 
     return (

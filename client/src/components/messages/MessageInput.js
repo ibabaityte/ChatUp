@@ -20,18 +20,21 @@ const MessageInput = (props) => {
     const [message, setMessage] = useState("");
 
     return (
-        <div style={messageInputContainer}>
-            <TextField value={message}
-                       style={messageInput}
-                       variant="standard"
-                       InputProps={{disableUnderline: true}}
-                       placeholder="Send a message..."
-                       onChange={e => {setMessage(e.target.value)}}
-            />
-            <IconButton onClick={(e) => {createMessage(e, setMessage, message, chat, user)}}
-                        sx={sendButton}>
-                <SendIcon/>
-            </IconButton>
+        <div style={{height: "100%"}} >
+            <form style={messageInputContainer}>
+                <TextField value={message}
+                           style={messageInput}
+                           variant="standard"
+                           InputProps={{disableUnderline: true}}
+                           placeholder="Send a message..."
+                           onChange={e => {
+                               setMessage(e.target.value)
+                           }}
+                />
+                <IconButton sx={sendButton} type="submit" onClick={(e) => createMessage(e, setMessage, message, chat, user)}>
+                    <SendIcon/>
+                </IconButton>
+            </form>
         </div>
     );
 }

@@ -28,7 +28,8 @@ const Header = (props) => {
 
     const {
         chatList,
-        setChatList
+        setChatList,
+        setMessages
     } = props;
 
     return (
@@ -40,6 +41,7 @@ const Header = (props) => {
                 <UserSearch
                     chatList={chatList}
                     setChatList={setChatList}
+                    setMessages={setMessages}
                 />
             </Grid>
             <Grid item xs={1} sm={1} md={2} lg={4} xl={4} sx={iconContainer}>

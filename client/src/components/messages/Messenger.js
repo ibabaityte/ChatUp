@@ -26,6 +26,7 @@ const Messenger = () => {
                     <Header
                         chatList={chatList}
                         setChatList={setChatList}
+                        setMessages={setMessages}
                     />
                 </Grid>
 

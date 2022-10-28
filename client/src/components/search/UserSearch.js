@@ -17,6 +17,7 @@ const UserSearch = (props) => {
     const {
         chatList,
         setChatList,
+        setMessages,
         user
     } = props;
 
@@ -26,20 +27,24 @@ const UserSearch = (props) => {
 
     return (
         <div style={{width: "100%"}}>
-            <SearchInput
-                keyword={keyword}
-                setKeyword={setKeyword}
-            />
-            <Button variant="contained"
-                    sx={button}
-                    onClick={() => search(keyword, user, setSearchedUsers, setAnchorEl)}>Search
-            </Button>
+            <form>
+                <SearchInput
+                    keyword={keyword}
+                    setKeyword={setKeyword}
+                />
+                <Button variant="contained"
+                        sx={button}
+                        type="submit"
+                        onClick={(e) => search(e, keyword, setKeyword, user, setSearchedUsers, setAnchorEl)}>Search
+                </Button>
+            </form>
             <SearchList
                 anchorEl={anchorEl}
                 setAnchorEl={setAnchorEl}
                 searchedUsers={searchedUsers}
                 chatList={chatList}
                 setChatList={setChatList}
+                setMessages={setMessages}
             />
         </div>
     );

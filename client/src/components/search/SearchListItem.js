@@ -14,12 +14,13 @@ const SearchListItem = (props) => {
         searchedUser,
         chatList,
         setChatList,
+        setMessages,
         user,
         getChatAction
     } = props;
 
     return (
-        <Typography sx={typography} onClick={() => {createChat(user, searchedUser._id, getChatAction, chatList, setChatList)}}>{searchedUser.nameAndSurname}</Typography>
+        <Typography sx={typography} onClick={() => {createChat(user, searchedUser._id, getChatAction, chatList, setChatList, setMessages)}}>{searchedUser.nameAndSurname}</Typography>
     );
 }
 

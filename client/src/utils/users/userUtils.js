@@ -34,13 +34,15 @@ const register = (newUser, navigate) => {
         });
 }
 
-const search = (keyword, user, setSearchedUsers, setAnchorEl) => {
+const search = (e, keyword, setKeyword, user, setSearchedUsers, setAnchorEl) => {
+    e.preventDefault();
     axios.get(USER_SEARCH_URL, {
         params: {keyword},
         headers: {"Authorization": user.token}
     }).then(result => {
         setSearchedUsers(result.data);
         setAnchorEl(document.getElementsByClassName("search")[0]);
+        setKeyword("");
     }).catch(err => {
         console.log(err);
     })

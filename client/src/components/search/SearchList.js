@@ -15,7 +15,8 @@ const SearchList = (props) => {
         setAnchorEl,
         searchedUsers,
         chatList,
-        setChatList
+        setChatList,
+        setMessages
     } = props;
 
     const open = Boolean(anchorEl);
@@ -42,6 +43,7 @@ const SearchList = (props) => {
                             searchedUser={searchedUser}
                             chatList={chatList}
                             setChatList={setChatList}
+                            setMessages={setMessages}
                         />
                     );
                 })
