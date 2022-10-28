@@ -6,11 +6,12 @@ const connectSocket = (socket, chatId) => {
 }
 
 const messageReceived = (message, messages, setMessages) => {
+    console.log(messages);
     try {
-        if(messages !== []) {
+        // if(messages !== []) {
             const newMessages = [...messages, message];
             setMessages(newMessages);
-        }
+        // }
     } catch (err) {
         console.log(err);
     }

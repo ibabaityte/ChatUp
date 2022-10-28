@@ -15,7 +15,7 @@ const fetchMessages = (req, res) => {
 }
 
 const createMessage = async (req, res) => {
-    const {message, chat, authorId} = req.body;
+    const {message, chat, userId} = req.body;
 
     if(!message || message === "") {
         res.status(400).send({
@@ -24,7 +24,7 @@ const createMessage = async (req, res) => {
     } else {
         const newMessage = new Message(
             {
-                author: authorId,
+                author: userId,
                 chat: chat._id,
                 content: message,
             }

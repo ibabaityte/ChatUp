@@ -28,7 +28,7 @@ const MessageInput = (props) => {
                        placeholder="Send a message..."
                        onChange={e => {setMessage(e.target.value)}}
             />
-            <IconButton onClick={(e) => {createMessage(e, setMessage, message, chat, user.userId)}}
+            <IconButton onClick={(e) => {createMessage(e, setMessage, message, chat, user)}}
                         sx={sendButton}>
                 <SendIcon/>
             </IconButton>

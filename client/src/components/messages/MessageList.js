@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {connect} from "react-redux";
 import {messageReceived, socket} from "../../utils/socket/socketUtils";
 import {getRecentMessages} from "../../utils/message/utils";
@@ -21,17 +21,19 @@ const MessageList = (props) => {
 
     useEffect(() => {
         socket.on("message received", (message) => messageReceived(message, messages, setMessages));
-        getRecentMessages(chat._id, user, setMessages);
-        // socket.on("mostRecentMessages", messages => setMessages(messages));
-    }, [chat, user]);
 
-    useEffect(() => {
         // scrolls the message list to the bottom
         setTimeout(() => {
             let msgList = document.getElementById("message-list");
             msgList.scrollTop = msgList.scrollHeight;
         }, 10);
-    }, [messages])
+
+        // socket.on("mostRecentMessages", messages => setMessages(messages));
+    }, [messages]);
+
+    useEffect(() => {
+        getRecentMessages(chat._id, user, setMessages);
+    }, [chat, user])
 
 
     return (
