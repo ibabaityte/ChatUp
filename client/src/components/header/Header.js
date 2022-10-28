@@ -1,8 +1,10 @@
 import {useState} from "react";
+import {connect} from "react-redux";
 
 // style imports
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import {
     logoContainer,
@@ -10,14 +12,15 @@ import {
     iconContainer,
     logo,
     headerStyles,
-    userIcon
+    userIcon,
+    userNameContainer,
+    userName
 } from "../../styles/header/HeaderStyles";
 
 // utils imports
 import {handleProfileMenuOpen} from "../../utils/header/headerUtils";
 import UserSearch from "../search/UserSearch";
 import Grid from '@mui/material/Grid';
-
 
 // component imports
 import UserDropdown from "./UserDropdown";
@@ -29,7 +32,8 @@ const Header = (props) => {
     const {
         chatList,
         setChatList,
-        setMessages
+        setMessages,
+        user
     } = props;
 
     return (
@@ -45,6 +49,7 @@ const Header = (props) => {
                 />
             </Grid>
             <Grid item xs={1} sm={1} md={2} lg={4} xl={4} sx={iconContainer}>
+                <Box sx={userNameContainer}><h3 style={userName}>{user.nameAndSurname.split(" ")[0]}</h3></Box>
                 <IconButton onClick={(e) => handleProfileMenuOpen(e, setAnchorEl)}>
                     <AccountCircle sx={userIcon}/>
                 </IconButton>
@@ -57,4 +62,10 @@ const Header = (props) => {
     );
 }
 
-export default Header;
+const mapStateToProps = (state) => {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps)(Header);

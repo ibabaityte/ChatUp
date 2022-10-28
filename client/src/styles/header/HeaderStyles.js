@@ -34,6 +34,20 @@ const userIcon = {
     color: "white"
 }
 
+const userNameContainer = {
+    display: {
+        xs: "none",
+        sm: "none",
+        md: "block",
+        lg: "block"
+    }
+}
+
+const userName = {
+    color: "white",
+    fontFamily: "Roboto, sans-serif",
+    letterSpacing: "2px"
+}
 
 export {
     logoContainer,
@@ -41,5 +55,7 @@ export {
     iconContainer,
     headerStyles,
     logo,
-    userIcon
+    userIcon,
+    userNameContainer,
+    userName
 }
