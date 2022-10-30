@@ -44,12 +44,13 @@ const userNameContainer = {
         md: "block",
         lg: "block"
     },
+    overflow: "auto",
 }
 
 const userName = {
     color: "white",
     fontFamily: "Roboto, sans-serif",
-    letterSpacing: "2px"
+    letterSpacing: "2px",
 }
 
 const avatar = {

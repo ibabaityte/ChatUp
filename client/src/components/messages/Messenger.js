@@ -48,7 +48,7 @@ const Messenger = (props) => {
                     />
                 </Grid>
 
-                <Grid item xs={3} s={2} sm={2} md={3} lg={4} xl={3} sx={chatListContainer}>
+                <Grid item xs={3} s={2} sm={2} md={3} lg={4} xl={3.5} sx={chatListContainer}>
                     <div style={{marginRight: "15px", overflowWrap: "break-word"}}>
                         <ChatList
                             chatList={chatList}
@@ -58,7 +58,7 @@ const Messenger = (props) => {
                     </div>
                 </Grid>
 
-                <Grid item xs={9} sm={10} md={9} lg={8} xl={9} sx={chatContainer}>
+                <Grid item xs={9} sm={10} md={9} lg={8} xl={8.5} sx={chatContainer}>
                     <Chat
                         chatList={chatList}
                         setChatList={setChatList}

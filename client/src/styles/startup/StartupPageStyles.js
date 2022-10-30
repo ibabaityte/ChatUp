@@ -74,6 +74,7 @@ const input = {
 }
 
 const formTitle = {
+    height: "20%",
     textAlign: "center",
     fontFamily: "Crimson Text, serif",
     letterSpacing: "2px",
@@ -88,7 +89,7 @@ const logo = {
 }
 
 const formContainer = {
-    height: "100%",
+    height: "80%",
     display: "flex",
     justifyContent: "center"
 }
