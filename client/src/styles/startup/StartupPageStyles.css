@@ -63,7 +63,8 @@ body {
 .logoContainer {
     display: flex;
     flex-direction: column;
-    align-content: center;
+    /*justify-content: center;*/
+    /*align-content: center;*/
 }
 
 .slogan {
@@ -73,7 +74,7 @@ body {
 }
 
 .form {
-    height: 60%;
+    height: 50%;
     width: 100%;
     display: flex;
     flex-direction: column;
