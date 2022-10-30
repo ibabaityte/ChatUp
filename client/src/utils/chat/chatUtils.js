@@ -28,7 +28,7 @@ const createChat = (user, chatMember, getChatAction, chatList, setChatList, setM
     })
 }
 
-const fetchChats = (user, getChatAction, chatList, setChatList, setMessages) => {
+const fetchChats = (user, getChatAction, chatList, setChatList) => {
     axios.get(`${CHAT_ENDPOINT}/fetchChats`, {
         headers: {
             "Authorization": user.token

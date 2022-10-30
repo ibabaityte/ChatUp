@@ -15,7 +15,8 @@ import {
     headerStyles,
     userIcon,
     userNameContainer,
-    userName
+    userName,
+    avatar
 } from "../../styles/header/HeaderStyles";
 
 // utils imports
@@ -25,6 +26,7 @@ import {mapUserToProps} from "../../redux/reduxUtils";
 // component imports
 import UserDropdown from "./UserDropdown";
 import UserSearch from "../search/UserSearch";
+import {Avatar} from "@mui/material";
 
 const Header = (props) => {
 
@@ -50,10 +52,17 @@ const Header = (props) => {
                 />
             </Grid>
             <Grid item xs={1} sm={1} md={2} lg={4} xl={4} sx={iconContainer}>
-                <Box sx={userNameContainer}><h3 style={userName}>{user.nameAndSurname.split(" ")[0]}</h3></Box>
-                <IconButton onClick={(e) => handleProfileMenuOpen(e, setAnchorEl)}>
-                    <AccountCircle sx={userIcon}/>
-                </IconButton>
+                <Box sx={userNameContainer}>
+                    <h3 style={userName}>{user.nameAndSurname.split(" ")[0]}</h3>
+                </Box>
+                {/*<IconButton onClick={(e) => handleProfileMenuOpen(e, setAnchorEl)}>*/}
+                {/*    <AccountCircle sx={userIcon}/>*/}
+                {/*</IconButton>*/}
+                <Avatar
+                    onClick={(e) => handleProfileMenuOpen(e, setAnchorEl)}
+                    sx={avatar}
+                    src={'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80'}
+                />
             </Grid>
             <UserDropdown
                 anchorEl={anchorEl}

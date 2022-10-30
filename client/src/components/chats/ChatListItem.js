@@ -23,9 +23,11 @@ const ChatListItem = (props) => {
     return (
         <Grid container sx={chatListItem} onClick={() => getChatAction(user, chatUser._id, setMessages)}>
             <Grid item xs={12} sm={12} md={12} lg={3} xl={2}>
-                <Avatar sx={avatar}>
-                    <ImageIcon />
-                </Avatar>
+                {/*<Avatar sx={avatar} src="https://www.google.com/url?sa=i&url=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fperson&psig=AOvVaw17wRrIvmbT-7sdgNmukdcl&ust=1667234101044000&source=images&cd=vfe&ved=0CA0QjRxqFwoTCPj2yZSxiPsCFQAAAAAdAAAAABAE"/>*/}
+                <Avatar
+                    sx={avatar}
+                    src={'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80'}
+                />
             </Grid>
             <Grid item lg={9} xl={10} sx={{nameAndSurnameContainer}}>
                 <ListItem value={chatUser.nameAndSurname} sx={nameSurname}>{chatUser.nameAndSurname}</ListItem>

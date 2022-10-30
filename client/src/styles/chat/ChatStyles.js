@@ -39,7 +39,8 @@ const chatMember = {
     fontSize: "18px",
     display: "inline-block",
     paddingLeft: "15px",
-    overflowWrap: "break-word"
+    overflowWrap: "break-word",
+    margin: "auto"
 }
 
 const noMessagesContainer = {
@@ -80,8 +81,8 @@ const messageContainer = {
     minWidth: "40%",
     backgroundColor: "rgba(255,255,255,0.5)",
     boxShadow: "2px 2px 4px 0px rgba(82,82,82,0.75)",
-    webkitBoxShadow: "2px 2px 4px 0px rgba(82,82,82,0.75)",
-    mozBoxShadow: "2px 2px 4px 0px rgba(82,82,82,0.75)",
+    WebkitBoxShadow: "2px 2px 4px 0px rgba(82,82,82,0.75)",
+    MozBoxShadow: "2px 2px 4px 0px rgba(82,82,82,0.75)",
     padding: "10px",
     borderRadius: "10px",
     marginBottom: "10px",
@@ -110,10 +111,16 @@ const chatRecipientContainer = {
     flexDirection: "row"
 }
 
-const chatRecipient = {
+const chatRecipientGrid = {
     display: "flex",
     overflowWrap: "break-word",
     alignItems: "center"
+}
+
+const chatRecipient = {
+    display: "flex",
+    flexDirection: "row",
+    paddingLeft: "15px"
 }
 
 const deleteIconContainer = {
@@ -143,6 +150,7 @@ export {
     nameAndSurname,
     messageText,
     chatRecipientContainer,
+    chatRecipientGrid,
     chatRecipient,
     deleteIconContainer,
     deleteIcon

@@ -1,8 +1,8 @@
 const chatListContainer = {
     backgroundColor: "rgba(25, 118, 210, 0.5)",
     boxShadow: "3px 3px 6px 0px rgba(82,82,82,0.75)",
-    webkitBoxShadow: "3px 3px 6px 0px rgba(82,82,82,0.75)",
-    mozBoxShadow: "3px 3px 6px 0px rgba(82,82,82,0.75)",
+    WebkitBoxShadow: "3px 3px 6px 0px rgba(82,82,82,0.75)",
+    MozBoxShadow: "3px 3px 6px 0px rgba(82,82,82,0.75)",
     height: "calc(90vh - 35px)",
     minHeight: "758px",
     padding: {
@@ -57,10 +57,18 @@ const avatar = {
     margin: "auto"
 }
 
+const chatHeaderAvatar = {
+    width: 56,
+    height: 56,
+    cursor: "pointer",
+    margin: "auto"
+}
+
 export {
     chatListContainer,
     chatListItem,
     nameSurname,
     nameAndSurnameContainer,
-    avatar
+    avatar,
+    chatHeaderAvatar
 }

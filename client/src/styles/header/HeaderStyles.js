@@ -18,8 +18,8 @@ const iconContainer = {
 const headerStyles = {
     backgroundColor: "rgba(25, 118, 210, 0.5)",
     boxShadow: "3px 3px 6px 0px rgba(82,82,82,0.75)",
-    webkitBoxShadow: "3px 3px 6px 0px rgba(82,82,82,0.75)",
-    mozBoxShadow: "3px 3px 6px 0px rgba(82,82,82,0.75)",
+    WebkitBoxShadow: "3px 3px 6px 0px rgba(82,82,82,0.75)",
+    MozBoxShadow: "3px 3px 6px 0px rgba(82,82,82,0.75)",
     borderRadius: "5px",
     width: "100%",
     height: "calc(10vh - 10px)",
@@ -43,13 +43,20 @@ const userNameContainer = {
         sm: "none",
         md: "block",
         lg: "block"
-    }
+    },
 }
 
 const userName = {
     color: "white",
     fontFamily: "Roboto, sans-serif",
     letterSpacing: "2px"
+}
+
+const avatar = {
+    cursor: "pointer",
+    height: 48,
+    width: 48,
+    margin: "0 0 0 20px"
 }
 
 export {
@@ -60,5 +67,6 @@ export {
     logo,
     userIcon,
     userNameContainer,
-    userName
+    userName,
+    avatar
 }

@@ -1,4 +1,5 @@
 import {connect} from "react-redux";
+import {useEffect} from "react";
 
 // util imports
 import {getChatAction} from "../../redux/actions";
@@ -16,12 +17,10 @@ import {messageReceived, socket} from "../../utils/socket/socketUtils";
 const Chat = (props) => {
 
     const {
-        user,
         chatList,
         setChatList,
         messages,
         setMessages,
-        getChatAction
     } = props;
 
     return (
@@ -47,4 +46,4 @@ const Chat = (props) => {
     );
 }
 
-export default connect(mapStateToProps, {getChatAction})(Chat);
+export default Chat;

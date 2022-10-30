@@ -35,7 +35,7 @@ const Messenger = (props) => {
     useEffect(() => {
         fetchChats(user, getChatAction, chatList, setChatList);
         connectSocket(socket, chat._id);
-    }, [user, setChatList]);
+    }, []);
 
     return (
         <div className="App">
