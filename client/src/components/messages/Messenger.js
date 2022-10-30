@@ -1,4 +1,6 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {connect} from "react-redux";
+import {getChatAction} from "../../redux/actions";
 
 // style imports
 import Grid from '@mui/material/Grid';
@@ -13,11 +15,24 @@ import {
 import ChatList from "../chats/ChatList";
 import Chat from "../chats/Chat";
 import Header from "../header/Header";
+import {fetchChats} from "../../utils/chat/chatUtils";
+import {connectSocket, messageReceived, socket} from "../../utils/socket/socketUtils";
 
-const Messenger = () => {
+const Messenger = (props) => {
+
+    const {
+        user,
+        chat,
+        getChatAction
+    } = props;
 
     const [chatList, setChatList] = useState([]);
     const [messages, setMessages] = useState([]);
+
+    useEffect(() => {
+        fetchChats(user, getChatAction, chatList, setChatList);
+        connectSocket(socket, chat._id);
+    }, [user, setChatList]);
 
     return (
         <div className="App">
@@ -43,6 +58,7 @@ const Messenger = () => {
                 <Grid item xs={9} sm={10} md={9} lg={8} xl={9} sx={chatContainer}>
                     <Chat
                         chatList={chatList}
+                        setChatList={setChatList}
                         messages={messages}
                         setMessages={setMessages}
                     />
@@ -52,4 +68,11 @@ const Messenger = () => {
     );
 }
 
-export default Messenger;
+const mapStateToProps = (state) => {
+    return {
+        user: state.user,
+        chat: state.chat
+    }
+}
+
+export default connect(mapStateToProps, {getChatAction})(Messenger);

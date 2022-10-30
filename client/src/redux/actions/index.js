@@ -23,10 +23,14 @@ export const logoutAction = () => {
 }
 
 export const getChatAction = (user, userId, setMessages) => async (dispatch) => {
-    let chat = await getChat(user, userId, setMessages);
-    console.log(chat);
+    let payload;
+    if(userId === null || userId === undefined) {
+        payload = {}
+    } else {
+        payload = await getChat(user, userId, setMessages);
+    }
     dispatch({
         type: "SET_CHAT",
-        payload: chat
+        payload
     });
 }

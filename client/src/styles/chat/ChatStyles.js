@@ -13,8 +13,10 @@ const chatHeader = {
     borderRadius: "5px",
     display: "flex",
     alignItems: "center",
-    overflowX: "auto"
+    overflowX: "auto",
+    width: "100%"
 }
+
 const messageListContainer = {
     height: "80%"
 }
@@ -100,6 +102,27 @@ const messageText = {
     overflowWrap: "break-word"
 }
 
+const chatRecipientContainer = {
+    display: "flex",
+    flexDirection: "row"
+}
+
+const chatRecipient = {
+    display: "flex",
+    overflowWrap: "break-word",
+    alignItems: "center"
+}
+
+const deleteIconContainer = {
+    display: "flex",
+    justifyContent: "flex-end"
+}
+
+const deleteIcon = {
+    color: "rgb(153, 25, 15)",
+    fontSize: "40px"
+}
+
 export {
     chatContainer,
     chatHeader,
@@ -115,5 +138,9 @@ export {
     authorMessage,
     friendMessage,
     nameAndSurname,
-    messageText
+    messageText,
+    chatRecipientContainer,
+    chatRecipient,
+    deleteIconContainer,
+    deleteIcon
 };

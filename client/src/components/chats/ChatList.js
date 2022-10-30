@@ -24,10 +24,6 @@ const ChatList = (props) => {
         user
     } = props;
 
-    useEffect(() => {
-        fetchChats(user, chat, getChatAction, chatList, setChatList);
-    }, [user, setChatList]);
-
     return (
         <Grid item sx={chatListContainer}>
             {

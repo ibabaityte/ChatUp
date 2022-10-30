@@ -11,7 +11,7 @@ const createMessage = (e, setMessage, message, chat, author) => {
         }
     }).then(result => {
         setMessage("");
-        console.log(result);
+        // console.log(result);
     }).catch(err => {
         console.log(err);
     })
@@ -24,8 +24,6 @@ const getRecentMessages = (chatId, user, setMessages) => {
             "Authorization": user.token
         }
     }).then(data => {
-        // console.log(data.data.reverse());
-        // console.log(data.data);
         setMessages(data.data.reverse());
         // socket.emit("mostRecentMessages", data.data.reverse());
     }).catch(err => {

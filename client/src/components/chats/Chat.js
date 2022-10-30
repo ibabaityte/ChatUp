@@ -11,38 +11,33 @@ import ChatHeader from "./ChatHeader";
 
 // style imports
 import {chatContainer, chatHeader, messageListContainer} from "../../styles/chat/ChatStyles";
+import {messageReceived, socket} from "../../utils/socket/socketUtils";
 
 const Chat = (props) => {
 
     const {
         user,
         chatList,
+        setChatList,
         messages,
         setMessages,
         getChatAction
     } = props;
 
-    useEffect(() => {
-        // if(chatList !== undefined){
-        //     getChatAction(user, chatList[0].users[0]._id);
-        // }
-        // if(chatList.users.length > 0) {
-        //     getChatAction(user, chatList.users[0]._id);
-        // }
-        if(chatList[0] !== undefined) {
-            getChatAction(user, chatList[0].users[0]._id);
-        }
-    }, [])
-
     return (
         <div style={chatContainer}>
             <div style={chatHeader}>
-                <ChatHeader/>
+                <ChatHeader
+                    chatList={chatList}
+                    setChatList={setChatList}
+                    setMessages={setMessages}
+                />
             </div>
             <div style={messageListContainer}>
                 <MessageList
                     messages={messages}
                     setMessages={setMessages}
+                    chatList={chatList}
                 />
             </div>
             <div style={{height: "10%"}}>

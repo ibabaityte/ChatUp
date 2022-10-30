@@ -1,31 +1,39 @@
 import {connect} from "react-redux";
+import ChatRecipient from "./ChatRecipient";
+import DeleteChat from "./DeleteChat";
 
 // style imports
-import {chatMember} from "../../styles/chat/ChatStyles";
+import {chatRecipientContainer} from "../../styles/chat/ChatStyles";
+import Grid from "@mui/material/Grid";
 
 const ChatHeader = (props) => {
 
     const {
-        chat,
-        user
+        chatList,
+        setChatList,
+        setMessages,
+        chat
     } = props;
 
     return (
-        <span style={{overflowWrap: "break-word"}}>
+        <Grid item xs={12} xl={12} style={chatRecipientContainer}>
+            <ChatRecipient/>
             {
-                chat.users ?
-                    chat.users.map((chatUser, key) => {
-                        return chatUser._id !== user.userId ?
-                            <p style={chatMember} key={key} >{chatUser.nameAndSurname}</p> : null
-                    }) : null
+                chat._id !== undefined ?
+                    <DeleteChat
+                        chatList={chatList}
+                        setChatList={setChatList}
+                        setMessages={setMessages}
+                    />
+                    :
+                    null
             }
-        </span>
+        </Grid>
     );
 }
 
 const mapStateToProps = (state) => {
     return {
-        user: state.user,
         chat: state.chat
     }
 }

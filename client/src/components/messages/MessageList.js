@@ -15,6 +15,7 @@ const MessageList = (props) => {
     const {
         messages,
         setMessages,
+        chatList,
         chat,
         user
     } = props;
@@ -34,7 +35,6 @@ const MessageList = (props) => {
     useEffect(() => {
         getRecentMessages(chat._id, user, setMessages);
     }, [])
-
 
     return (
         <div id="message-list" style={messageList}>
