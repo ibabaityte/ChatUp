@@ -1,5 +1,8 @@
 const chatListContainer = {
-    backgroundColor: "#1976d2",
+    backgroundColor: "rgba(25, 118, 210, 0.5)",
+    boxShadow: "3px 3px 6px 0px rgba(82,82,82,0.75)",
+    webkitBoxShadow: "3px 3px 6px 0px rgba(82,82,82,0.75)",
+    mozBoxShadow: "3px 3px 6px 0px rgba(82,82,82,0.75)",
     height: "calc(90vh - 35px)",
     minHeight: "758px",
     padding: {

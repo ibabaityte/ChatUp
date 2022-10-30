@@ -1,6 +1,6 @@
 const chatContainer = {
     flexDirection: "column",
-    backgroundColor: "rgba(25, 118, 210)",
+    backgroundColor: "rgba(25, 118, 210, 0.5)",
     height: "calc(90vh - 35px)",
     minHeight: "758px",
     borderRadius: "5px",
@@ -9,7 +9,7 @@ const chatContainer = {
 
 const chatHeader = {
     minHeight: "10%",
-    backgroundColor: "rgba(25, 118, 210)",
+    // backgroundColor: "rgba(25, 118, 210, 0.1)",
     borderRadius: "5px",
     display: "flex",
     alignItems: "center",
@@ -27,7 +27,7 @@ const messageList = {
     flexDirection: "column",
     height: "100%",
     width: "100%",
-    backgroundColor: "rgba(255, 255, 255, 0.3)",
+    backgroundColor: "rgba(255, 255, 255, 0.5)",
     boxSizing: "border-box",
     padding: "10px 20px"
 }
@@ -79,6 +79,9 @@ const messageContainer = {
     maxWidth: "45%",
     minWidth: "40%",
     backgroundColor: "rgba(255,255,255,0.5)",
+    boxShadow: "2px 2px 4px 0px rgba(82,82,82,0.75)",
+    webkitBoxShadow: "2px 2px 4px 0px rgba(82,82,82,0.75)",
+    mozBoxShadow: "2px 2px 4px 0px rgba(82,82,82,0.75)",
     padding: "10px",
     borderRadius: "10px",
     marginBottom: "10px",
@@ -119,7 +122,7 @@ const deleteIconContainer = {
 }
 
 const deleteIcon = {
-    color: "rgb(153, 25, 15)",
+    color: "rgb(153, 25, 15, 0.9)",
     fontSize: "40px"
 }
 

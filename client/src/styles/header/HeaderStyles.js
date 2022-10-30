@@ -16,7 +16,10 @@ const iconContainer = {
 }
 
 const headerStyles = {
-    backgroundColor: "rgba(25, 118, 210)",
+    backgroundColor: "rgba(25, 118, 210, 0.5)",
+    boxShadow: "3px 3px 6px 0px rgba(82,82,82,0.75)",
+    webkitBoxShadow: "3px 3px 6px 0px rgba(82,82,82,0.75)",
+    mozBoxShadow: "3px 3px 6px 0px rgba(82,82,82,0.75)",
     borderRadius: "5px",
     width: "100%",
     height: "calc(10vh - 10px)",

@@ -1,5 +1,5 @@
 const messengerContainer = {
-    height: "calc(100vh - 30px)",
+    height: "calc(100vh - 33px)",
     minHeight: "692px"
 }
 
