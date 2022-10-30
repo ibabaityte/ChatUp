@@ -74,6 +74,7 @@ const Register = () => {
                         placeholder="password"
                         onChange={e => handleInputChange(e, newUser, setNewUser)}
                     />
+
                     <Button variant="contained" color="secondary" sx={confirmButton} type="submit" onClick={e => handleRegister(e, newUser, navigate)}>Sign Up</Button>
                 </form>
             </Grid>

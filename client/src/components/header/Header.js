@@ -39,6 +39,8 @@ const Header = (props) => {
         user
     } = props;
 
+    console.log(user);
+
     return (
         <Grid container sx={headerStyles}>
             <Grid item xs={3} sm={2} md={2} lg={2} xl={1} sx={logoContainer}>

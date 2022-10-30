@@ -8,6 +8,7 @@ const login = async (user) => {
     let result;
     await axios.post(`${API_ENDPOINT}/login`, {email, password})
         .then((data) => {
+            console.log(data);
             result = {
                 nameAndSurname: data.data.nameAndSurname,
                 email: data.data.email,

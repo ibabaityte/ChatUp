@@ -23,7 +23,6 @@ const UserProfileEdit = (props) => {
             <form style={form}>
                 <p>Profile pic:</p>
                 <TextField
-                    // className={classes.input}
                     type="file"
                     name="image"
                     accept="image/*"
@@ -32,9 +31,8 @@ const UserProfileEdit = (props) => {
 
                 <br/>
                 <TextField
-                    // className={classes.input}
                     type="text"
-                    value={userInfo.nameAndSurname}
+                    value={userInfo.nameAndSurname.split(" ")[0]}
                     name="name"
                     label="Name"
                     // onChange={e => handleProduct(e, "title", selectedProduct, setSelectedProduct)}
@@ -43,9 +41,8 @@ const UserProfileEdit = (props) => {
                 <br/>
 
                 <TextField
-                    // className={classes.input}
                     type="text"
-                    value={userInfo.nameAndSurname}
+                    value={userInfo.nameAndSurname.split(" ")[1]}
                     name="surname"
                     label="Surname"
                     // onChange={e => handleProduct(e, "description", selectedProduct, setSelectedProduct)}
@@ -54,7 +51,6 @@ const UserProfileEdit = (props) => {
                 <br/>
 
                 <TextField
-                    // className={classes.input}
                     type="text"
                     value={userInfo.email}
                     inputProps={{min: 0}}
@@ -66,9 +62,7 @@ const UserProfileEdit = (props) => {
                 <br/>
 
                 <TextField
-                    // className={classes.input}
-                    // type="text"
-                    // value={userInfo.bio}
+                    type="text"
                     value=""
                     name="bio"
                     label="Bio"

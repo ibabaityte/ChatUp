@@ -17,9 +17,13 @@ import {
     testNumeric,
     isUpperCase
 } from "../utils/validationUtils.js"
+import cloudinary from "../utils/cloudinaryConfig.js";
 
 // constants from env file
 const secretKey = process.env.JWT_SECRET;
+
+// image
+let image = "../api/pics/image.png";
 
 const register = (req, res) => {
     if (!inputValidation(req)) {
@@ -29,7 +33,7 @@ const register = (req, res) => {
         });
     }
 
-    if(!isUpperCase(req.body.name) || !isUpperCase(req.body.surname)) {
+    if (!isUpperCase(req.body.name) || !isUpperCase(req.body.surname)) {
         return res.status(400).send({
             code: "400",
             message: "First name and last name should start with uppercase letters. Try again. "
@@ -57,18 +61,37 @@ const register = (req, res) => {
                 message: "A user with this email already exists. Try again or login."
             });
         } else {
-            bcrypt.hash(req.body.password, 10, (err, hash) => {
+            bcrypt.hash(req.body.password, 10, async (err, hash) => {
                 if (err) {
                     return res.status(500).send({
                         code: "500",
                         message: "Something went wrong during register. Try again."
                     });
                 } else {
+
+                    // uploading image to cloudinary
+                    let imageUrl;
+                    let cloudinaryId;
+                    await cloudinary.uploader.upload(image)
+                        .then(result => {
+                            // console.log(result);
+                            imageUrl = result.secure_url;
+                            cloudinaryId = result.public_id;
+                        })
+                        .catch(err => {
+                            console.log(err);
+                        });
+
+                    // creating user object
                     const newUser = new User({
                         nameAndSurname: req.body.name + " " + req.body.surname,
                         email: req.body.email,
                         password: hash,
+                        imageUrl,
+                        cloudinaryId,
+                        bio: "My bio"
                     });
+
                     newUser.save().then(data => {
                         res.status(200).send({
                             code: "200",
@@ -114,6 +137,7 @@ const login = (req, res) => {
             bcrypt.compare(req.body.password, data.password)
                 .then(result => {
                     if (result) {
+                        console.log(data);
                         const token = jwt.sign({
                             email: data.email,
                             userId: data._id,
@@ -127,6 +151,7 @@ const login = (req, res) => {
                             nameAndSurname,
                             userId: data._id,
                             email: data.email,
+                            cloudinaryId: data.cloudinaryId,
                             expirationTimestamp: Date.now() + 1000 * 60 * 60 * 48
                         });
                     } else {
@@ -167,7 +192,7 @@ const get = (req, res) => {
 };
 
 const search = (req, res) => {
-    if(!req.query) {
+    if (!req.query) {
         res.status(400).send({
             data: [],
             message: "There was a problem while searching for users. Try again."
@@ -179,8 +204,13 @@ const search = (req, res) => {
         });
     }
 
-    User.find({nameAndSurname: {$regex: req.query.keyword, $options: 'i'}}).find({_id: {$ne: req.userId}}).then(data => {
-        if(data === null || data.length === 0) {
+    User.find({
+        nameAndSurname: {
+            $regex: req.query.keyword,
+            $options: 'i'
+        }
+    }).find({_id: {$ne: req.userId}}).then(data => {
+        if (data === null || data.length === 0) {
             res.status(404).send({
                 data: [],
                 message: "No results"
