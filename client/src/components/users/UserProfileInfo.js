@@ -27,6 +27,8 @@ const UserProfileInfo = (props) => {
 
     const {
         userInfo,
+        setEditInfo,
+        setModalOpen,
         user
     } = props;
 
@@ -55,8 +57,8 @@ const UserProfileInfo = (props) => {
                 {
                     userInfo._id === user._id ?
                         <Grid item sx={buttonContainer}>
-                            <Button variant="contained" sx={updateButton}>Update</Button>
-                            <Button variant="contained" sx={cancelButton}>Cancel</Button>
+                            <Button variant="contained" sx={updateButton} onClick={() => setEditInfo(true)}>Update</Button>
+                            <Button variant="contained" sx={cancelButton} onClick={() => setModalOpen(false)}>Cancel</Button>
                         </Grid>
                         :
                         null

@@ -13,7 +13,8 @@ import Button from "@mui/material/Button";
 const UserProfileEdit = (props) => {
 
     const {
-        userInfo
+        userInfo,
+        setEditInfo
     } = props;
 
     return (
@@ -82,9 +83,11 @@ const UserProfileEdit = (props) => {
                         variant="contained"
                         sx={updateButton}
                     >Update</Button>
+
                     <Button
                         variant="contained"
                         sx={cancelButton}
+                        onClick={() => setEditInfo(false)}
                     >Cancel</Button>
                 </div>
             </form>

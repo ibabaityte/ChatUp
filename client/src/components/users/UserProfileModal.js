@@ -1,3 +1,5 @@
+import {useState} from "react";
+
 // style imports
 import Modal from '@mui/material/Modal';
 
@@ -13,6 +15,8 @@ const UserProfileModal = (props) => {
         setModalOpen
     } = props;
 
+    const [editInfo, setEditInfo] = useState(false);
+
     return (
         <Modal
             open={modalOpen}
@@ -22,16 +26,20 @@ const UserProfileModal = (props) => {
         >
             {/*need a div because otherwise modal cries about ref*/}
             <div>
-                <UserProfileInfo
-                    userInfo={userInfo}
-                />
+                {
+                    editInfo ?
+                        <UserProfileEdit
+                            userInfo={userInfo}
+                            setEditInfo={setEditInfo}
+                        />
+                        :
+                        <UserProfileInfo
+                            userInfo={userInfo}
+                            setEditInfo={setEditInfo}
+                            setModalOpen={setModalOpen}
+                        />
+                }
             </div>
-
-            {/*<div>*/}
-            {/*    <UserProfileEdit*/}
-            {/*        userInfo={userInfo}*/}
-            {/*    />*/}
-            {/*</div>*/}
         </Modal>
     );
 }
