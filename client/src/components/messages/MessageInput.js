@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 
 // util imports
 import {createMessage} from "../../utils/message/utils";
+import {mapStateToProps} from "../../redux/reduxUtils";
 
 // style imports
 import {messageInput, messageInputContainer, sendButton} from "../../styles/chat/ChatStyles";
@@ -37,13 +38,6 @@ const MessageInput = (props) => {
             </form>
         </div>
     );
-}
-
-const mapStateToProps = (state) => {
-    return {
-        user: state.user,
-        chat: state.chat
-    }
 }
 
 export default connect(mapStateToProps)(MessageInput);

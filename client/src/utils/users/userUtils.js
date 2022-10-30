@@ -1,13 +1,12 @@
 import axios from "axios";
 
-const REGISTER_URL = process.env.REACT_APP_REGISTER;
-const LOGIN_URL = process.env.REACT_APP_LOGIN;
-const USER_SEARCH_URL = process.env.REACT_APP_USER_SEARCH;
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
+const USER_ENDPOINT = process.env.REACT_APP_USER_ENDPOINT;
 
 const login = async (user) => {
     const {email, password} = user;
     let result;
-    await axios.post(LOGIN_URL, {email, password})
+    await axios.post(`${API_ENDPOINT}/login`, {email, password})
         .then((data) => {
             result = {
                 nameAndSurname: data.data.nameAndSurname,
@@ -24,7 +23,7 @@ const login = async (user) => {
 }
 
 const register = (newUser, navigate) => {
-    axios.post(REGISTER_URL, newUser)
+    axios.post(`${API_ENDPOINT}/register`, newUser)
         .then((result) => {
             console.log(result.data.message);
             navigate("/");
@@ -36,7 +35,7 @@ const register = (newUser, navigate) => {
 
 const search = (e, keyword, setKeyword, user, setSearchedUsers, setAnchorEl) => {
     e.preventDefault();
-    axios.get(USER_SEARCH_URL, {
+    axios.get(`${USER_ENDPOINT}/search`, {
         params: {keyword},
         headers: {"Authorization": user.token}
     }).then(result => {

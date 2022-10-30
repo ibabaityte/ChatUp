@@ -2,6 +2,7 @@ import {connect} from "react-redux";
 
 // util imports
 import {getChatAction} from "../../redux/actions";
+import {mapUserToProps} from "../../redux/reduxUtils";
 
 // style imports
 import {Avatar} from "@mui/material";
@@ -33,10 +34,4 @@ const ChatListItem = (props) => {
     );
 }
 
-const mapStateToProps = (state) => {
-    return {
-        user: state.user
-    }
-}
-
-export default connect(mapStateToProps, {getChatAction})(ChatListItem);
+export default connect(mapUserToProps, {getChatAction})(ChatListItem);

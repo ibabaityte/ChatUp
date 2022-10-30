@@ -1,8 +1,8 @@
 import {connect} from "react-redux";
-import {useEffect} from "react";
 
 // util imports
 import {getChatAction} from "../../redux/actions";
+import {mapStateToProps} from "../../redux/reduxUtils";
 
 // component imports
 import MessageInput from "../messages/MessageInput";
@@ -45,13 +45,6 @@ const Chat = (props) => {
             </div>
         </div>
     );
-}
-
-const mapStateToProps = (state) => {
-    return {
-        user: state.user,
-        chat: state.chat
-    }
 }
 
 export default connect(mapStateToProps, {getChatAction})(Chat);

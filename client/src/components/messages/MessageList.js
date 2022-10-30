@@ -1,5 +1,8 @@
 import {useEffect} from "react";
 import {connect} from "react-redux";
+
+// util imports
+import {mapStateToProps} from "../../redux/reduxUtils";
 import {messageReceived, socket} from "../../utils/socket/socketUtils";
 import {getRecentMessages} from "../../utils/message/utils";
 
@@ -50,13 +53,6 @@ const MessageList = (props) => {
             }
         </div>
     );
-}
-
-const mapStateToProps = (state) => {
-    return {
-        user: state.user,
-        chat: state.chat
-    }
 }
 
 export default connect(mapStateToProps)(MessageList);

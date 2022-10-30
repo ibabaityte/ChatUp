@@ -1,5 +1,8 @@
 import {connect} from "react-redux";
 
+// util imports
+import {mapUserToProps} from "../../redux/reduxUtils";
+
 // style imports
 import {messageContainer, authorMessage, friendMessage, nameAndSurname, messageText} from "../../styles/chat/ChatStyles";
 
@@ -23,10 +26,4 @@ const Message = (props) => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        user: state.user
-    }
-}
-
-export default connect(mapStateToProps)(Message);
+export default connect(mapUserToProps)(Message);

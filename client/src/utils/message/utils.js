@@ -1,11 +1,10 @@
 import axios from "axios";
-const CREATE_MESSAGE_URL = process.env.REACT_APP_CREATE_MESSAGE;
-const FETCH_MESSAGES_URL = process.env.REACT_APP_FETCH_MESSAGES;
+const MESSAGES_ENDPOINT = process.env.REACT_APP_MESSAGE_ENDPOINT;
 
 const createMessage = (e, setMessage, message, chat, author) => {
     e.preventDefault();
     const {userId, token} = author;
-    axios.post(CREATE_MESSAGE_URL, {message, chat, userId}, {
+    axios.post(`${MESSAGES_ENDPOINT}/createMessage`, {message, chat, userId}, {
         headers: {
             "Authorization": token
         }
@@ -18,7 +17,7 @@ const createMessage = (e, setMessage, message, chat, author) => {
 }
 
 const getRecentMessages = (chatId, user, setMessages) => {
-    axios.get(FETCH_MESSAGES_URL, {
+    axios.get(`${MESSAGES_ENDPOINT}/fetchMessages`, {
         params: {chatId},
         headers: {
             "Authorization": user.token

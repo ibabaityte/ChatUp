@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 
 // util imports
 import {search} from "../../utils/users/userUtils";
+import {mapUserToProps} from "../../redux/reduxUtils";
 
 // component imports
 import SearchInput from "./SearchInput";
@@ -50,10 +51,4 @@ const UserSearch = (props) => {
     );
 }
 
-const mapStateToProps = (state) => {
-    return {
-        user: state.user
-    }
-}
-
-export default connect(mapStateToProps)(UserSearch);
+export default connect(mapUserToProps)(UserSearch);

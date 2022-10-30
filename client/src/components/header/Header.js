@@ -6,6 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import Grid from '@mui/material/Grid';
 import {
     logoContainer,
     userSearchContainer,
@@ -19,11 +20,11 @@ import {
 
 // utils imports
 import {handleProfileMenuOpen} from "../../utils/header/headerUtils";
-import UserSearch from "../search/UserSearch";
-import Grid from '@mui/material/Grid';
+import {mapUserToProps} from "../../redux/reduxUtils";
 
 // component imports
 import UserDropdown from "./UserDropdown";
+import UserSearch from "../search/UserSearch";
 
 const Header = (props) => {
 
@@ -62,10 +63,4 @@ const Header = (props) => {
     );
 }
 
-const mapStateToProps = (state) => {
-    return {
-        user: state.user
-    }
-}
-
-export default connect(mapStateToProps)(Header);
+export default connect(mapUserToProps)(Header);

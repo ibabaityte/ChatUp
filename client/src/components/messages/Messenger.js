@@ -1,5 +1,8 @@
 import {useEffect, useState} from "react";
 import {connect} from "react-redux";
+
+// util imports
+import {mapStateToProps} from "../../redux/reduxUtils";
 import {getChatAction} from "../../redux/actions";
 
 // style imports
@@ -16,7 +19,7 @@ import ChatList from "../chats/ChatList";
 import Chat from "../chats/Chat";
 import Header from "../header/Header";
 import {fetchChats} from "../../utils/chat/chatUtils";
-import {connectSocket, messageReceived, socket} from "../../utils/socket/socketUtils";
+import {connectSocket, socket} from "../../utils/socket/socketUtils";
 
 const Messenger = (props) => {
 
@@ -66,13 +69,6 @@ const Messenger = (props) => {
             </Grid>
         </div>
     );
-}
-
-const mapStateToProps = (state) => {
-    return {
-        user: state.user,
-        chat: state.chat
-    }
 }
 
 export default connect(mapStateToProps, {getChatAction})(Messenger);

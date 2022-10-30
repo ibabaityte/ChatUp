@@ -4,12 +4,10 @@ import {connectSocket} from "../socket/socketUtils";
 import {socket} from "../socket/socketUtils";
 import {getRecentMessages} from "../message/utils";
 
-const CREATE_CHAT_URL = process.env.REACT_APP_CREATE_CHAT;
-const FETCH_CHATS_URL = process.env.REACT_APP_FETCH_CHATS;
-const DELETE_CHAT_URL = process.env.REACT_APP_DELETE_CHAT;
+const CHAT_ENDPOINT = process.env.REACT_APP_CHAT_ENDPOINT;
 
 const createChat = (user, chatMember, getChatAction, chatList, setChatList, setMessages) => {
-    axios.post(CREATE_CHAT_URL, {userId: chatMember}, {
+    axios.post(`${CHAT_ENDPOINT}/createChat`, {userId: chatMember}, {
         headers: {
             "Authorization": user.token
         }
@@ -31,7 +29,7 @@ const createChat = (user, chatMember, getChatAction, chatList, setChatList, setM
 }
 
 const fetchChats = (user, getChatAction, chatList, setChatList, setMessages) => {
-    axios.get(FETCH_CHATS_URL, {
+    axios.get(`${CHAT_ENDPOINT}/fetchChats`, {
         headers: {
             "Authorization": user.token
         }
@@ -51,7 +49,7 @@ const fetchChats = (user, getChatAction, chatList, setChatList, setMessages) => 
 
 const getChat = async (user, receiver, setMessages) => {
     let chat;
-    await axios.get(FETCH_CHATS_URL, {
+    await axios.get(`${CHAT_ENDPOINT}/fetchChats`, {
         params: {
             "userId": receiver
         },
@@ -71,7 +69,7 @@ const getChat = async (user, receiver, setMessages) => {
 }
 
 const deleteChat = (chatId, user, getChatAction, chatList, setChatList, setMessages) => {
-    axios.delete(DELETE_CHAT_URL, {
+    axios.delete(`${CHAT_ENDPOINT}/deleteChat`, {
         params: {chatId},
         headers: {
             "Authorization": user.token

@@ -1,4 +1,9 @@
 import {connect} from "react-redux";
+
+// util imports
+import {mapChatToProps} from "../../redux/reduxUtils";
+
+// component imports
 import ChatRecipient from "./ChatRecipient";
 import DeleteChat from "./DeleteChat";
 
@@ -32,10 +37,4 @@ const ChatHeader = (props) => {
     );
 }
 
-const mapStateToProps = (state) => {
-    return {
-        chat: state.chat
-    }
-}
-
-export default connect(mapStateToProps)(ChatHeader);
+export default connect(mapChatToProps)(ChatHeader);

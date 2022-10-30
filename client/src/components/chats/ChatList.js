@@ -1,9 +1,8 @@
-import {useEffect} from "react";
 import {connect} from "react-redux";
 
 // util imports
-import {fetchChats} from "../../utils/chat/chatUtils";
 import {getChatAction} from "../../redux/actions";
+import {mapStateToProps} from "../../redux/reduxUtils";
 
 // component imports
 import ChatListItem from "./ChatListItem";
@@ -48,13 +47,6 @@ const ChatList = (props) => {
             }
         </Grid>
     );
-}
-
-const mapStateToProps = (state) => {
-    return {
-        user: state.user,
-        chat: state.chat
-    }
 }
 
 export default connect(mapStateToProps, {getChatAction})(ChatList);

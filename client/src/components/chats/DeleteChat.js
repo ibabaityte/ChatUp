@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 // util imports
 import {deleteChat} from "../../utils/chat/chatUtils";
 import {getChatAction} from "../../redux/actions";
+import {mapStateToProps} from "../../redux/reduxUtils";
 
 // style imports
 import Grid from "@mui/material/Grid";
@@ -27,13 +28,6 @@ const DeleteChat = (props) => {
             </IconButton>
         </Grid>
     );
-}
-
-const mapStateToProps = (state) => {
-    return {
-        chat: state.chat,
-        user: state.user
-    }
 }
 
 export default connect(mapStateToProps, {getChatAction})(DeleteChat);

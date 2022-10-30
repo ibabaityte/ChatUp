@@ -1,5 +1,8 @@
 import {connect} from "react-redux";
 
+// util imports
+import {mapStateToProps} from "../../redux/reduxUtils";
+
 // style imports
 import {chatMember, chatRecipient} from "../../styles/chat/ChatStyles";
 import Grid from "@mui/material/Grid";
@@ -22,13 +25,6 @@ const ChatRecipient = (props) => {
             }
         </Grid>
     );
-}
-
-const mapStateToProps = (state) => {
-    return {
-        user: state.user,
-        chat: state.chat
-    }
 }
 
 export default connect(mapStateToProps)(ChatRecipient);

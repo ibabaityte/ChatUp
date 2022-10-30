@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 // utils
 import {handleInputChange} from "../../utils/users/userHandlers.js";
 import {loginAction} from "../../redux/actions";
+import {mapUserToProps} from "../../redux/reduxUtils";
 
 // style imports
 import {ThemeProvider} from "@mui/material/styles";
@@ -60,8 +61,4 @@ const Login = (props) => {
     );
 }
 
-const mapStateToProps = (state) => {
-    return {user: state.user}
-}
-
-export default connect(mapStateToProps, {loginAction})(Login);
+export default connect(mapUserToProps, {loginAction})(Login);
