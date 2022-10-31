@@ -63,7 +63,7 @@ const Header = (props) => {
                 <Avatar
                     onClick={(e) => handleProfileMenuOpen(e, setAnchorEl)}
                     sx={avatar}
-                    src={'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80'}
+                    src={user.image}
                 />
             </Grid>
             <UserDropdown

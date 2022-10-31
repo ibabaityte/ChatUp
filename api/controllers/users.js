@@ -74,20 +74,18 @@ const register = (req, res) => {
                     let cloudinaryId;
                     await cloudinary.uploader.upload(image)
                         .then(result => {
-                            // console.log(result);
                             imageUrl = result.secure_url;
                             cloudinaryId = result.public_id;
                         })
                         .catch(err => {
                             console.log(err);
                         });
-
                     // creating user object
                     const newUser = new User({
                         nameAndSurname: req.body.name + " " + req.body.surname,
                         email: req.body.email,
                         password: hash,
-                        imageUrl,
+                        image: imageUrl,
                         cloudinaryId,
                         bio: "My bio"
                     });
@@ -137,7 +135,6 @@ const login = (req, res) => {
             bcrypt.compare(req.body.password, data.password)
                 .then(result => {
                     if (result) {
-                        console.log(data);
                         const token = jwt.sign({
                             email: data.email,
                             userId: data._id,
@@ -151,7 +148,7 @@ const login = (req, res) => {
                             nameAndSurname,
                             userId: data._id,
                             email: data.email,
-                            cloudinaryId: data.cloudinaryId,
+                            image: data.image,
                             expirationTimestamp: Date.now() + 1000 * 60 * 60 * 48
                         });
                     } else {

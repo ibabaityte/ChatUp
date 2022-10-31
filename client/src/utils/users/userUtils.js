@@ -13,7 +13,8 @@ const login = async (user) => {
                 nameAndSurname: data.data.nameAndSurname,
                 email: data.data.email,
                 token: data.data.token,
-                userId: data.data.userId
+                userId: data.data.userId,
+                image: data.data.image
             };
         })
         .catch((err) => {

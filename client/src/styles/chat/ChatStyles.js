@@ -40,7 +40,7 @@ const chatMember = {
     display: "inline-block",
     paddingLeft: "15px",
     // overflowWrap: "break-word",
-    margin: "auto"
+    margin: "auto",
 }
 
 const noMessagesContainer = {
