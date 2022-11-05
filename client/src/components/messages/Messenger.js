@@ -4,6 +4,8 @@ import {connect} from "react-redux";
 // util imports
 import {mapStateToProps} from "../../redux/reduxUtils";
 import {getChatAction} from "../../redux/actions";
+import {fetchChats} from "../../utils/chat/chatUtils";
+import {connectSocket, socket, chatDeletedSocket} from "../../utils/socket/socketUtils";
 
 // style imports
 import Grid from '@mui/material/Grid';
@@ -18,8 +20,6 @@ import {
 import ChatList from "../chats/ChatList";
 import Chat from "../chats/Chat";
 import Header from "../header/Header";
-import {fetchChats} from "../../utils/chat/chatUtils";
-import {connectSocket, socket} from "../../utils/socket/socketUtils";
 
 const Messenger = (props) => {
 
@@ -33,8 +33,10 @@ const Messenger = (props) => {
     const [messages, setMessages] = useState([]);
 
     useEffect(() => {
-        fetchChats(user, getChatAction, chatList, setChatList);
+        fetchChats(user, chatList, setChatList);
         connectSocket(socket, chat._id);
+        socket.on("user joined", () => fetchChats(user, chatList, setChatList))
+        socket.on("chat deleted", () => chatDeletedSocket(user, chatList, setChatList, getChatAction, setMessages));
     }, []);
 
     return (

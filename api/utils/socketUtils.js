@@ -4,11 +4,21 @@ const joinChat = (room, socket, io) => {
         // will handle later when front error handling is implemented
     } else {
         socket.join(room.id);
-        //dont use it in the front yet
-        // io.emit("user joined", "user joined");
+        io.emit("user joined");
+    }
+}
+
+const deleteChat = (room, socket, io) => {
+    if(room === undefined) {
+        return null;
+        // will handle later when front error handling is implemented
+    } else {
+        socket.leave(room.id);
+        io.emit("chat deleted");
     }
 }
 
 export {
-    joinChat
+    joinChat,
+    deleteChat
 }

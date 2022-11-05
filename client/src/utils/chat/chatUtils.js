@@ -28,7 +28,7 @@ const createChat = (user, chatMember, getChatAction, chatList, setChatList, setM
     })
 }
 
-const fetchChats = (user, getChatAction, chatList, setChatList) => {
+const fetchChats = (user, chatList, setChatList) => {
     axios.get(`${CHAT_ENDPOINT}/fetchChats`, {
         headers: {
             "Authorization": user.token
@@ -68,7 +68,7 @@ const getChat = async (user, receiver, setMessages) => {
     return chat;
 }
 
-const deleteChat = (chatId, user, getChatAction, chatList, setChatList, setMessages) => {
+const deleteChat = (chatId, user, getChatAction, chatList, setChatList, setMessages, socket) => {
     axios.delete(`${CHAT_ENDPOINT}/deleteChat`, {
         params: {chatId},
         headers: {
@@ -76,15 +76,18 @@ const deleteChat = (chatId, user, getChatAction, chatList, setChatList, setMessa
         }
     }).then(result => {
         // console.log(result);
-        fetchChats(user, getChatAction, chatList, setChatList, setMessages);
+        fetchChats(user, chatList, setChatList, setMessages);
         getRecentMessages(chatId, user, setMessages);
 
         // every time we delete a chat, we load the first one to ui
-        if(chatList.length === 1) {
+        // or if that's the last chat then we set the chat to null
+        if(chatList.length === 1 || chatList.length < 1) {
             getChatAction(user, null, setMessages);
         } else {
             getChatAction(user, chatList[0].users[0]._id, setMessages);
         }
+
+        socket.emit("chat deleted", {chatId});
     }).catch(err => {
         console.log(err);
     })

@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {deleteChat} from "../../utils/chat/chatUtils";
 import {getChatAction} from "../../redux/actions";
 import {mapStateToProps} from "../../redux/reduxUtils";
+import {socket} from "../../utils/socket/socketUtils";
 
 // style imports
 import Grid from "@mui/material/Grid";
@@ -23,7 +24,7 @@ const DeleteChat = (props) => {
 
     return (
         <Grid item xs={2} xl={2} sx={deleteIconContainer}>
-            <IconButton onClick={() => deleteChat(chat._id, user, getChatAction, chatList, setChatList, setMessages)}>
+            <IconButton onClick={() => deleteChat(chat._id, user, getChatAction, chatList, setChatList, setMessages, socket)}>
                 <DeleteForeverIcon sx={deleteIcon}/>
             </IconButton>
         </Grid>

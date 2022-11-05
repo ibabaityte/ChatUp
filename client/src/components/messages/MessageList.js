@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 
 // util imports
 import {mapStateToProps} from "../../redux/reduxUtils";
-import {messageReceived, socket} from "../../utils/socket/socketUtils";
+import {messageReceivedSocket, socket} from "../../utils/socket/socketUtils";
 import {getRecentMessages} from "../../utils/message/utils";
 
 // component imports
@@ -24,7 +24,7 @@ const MessageList = (props) => {
     } = props;
 
     useEffect(() => {
-        socket.on("message received", (message) => messageReceived(message, messages, setMessages));
+        socket.on("message received", (message) => messageReceivedSocket(message, messages, setMessages));
 
         // scrolls the message list to the bottom
         setTimeout(() => {

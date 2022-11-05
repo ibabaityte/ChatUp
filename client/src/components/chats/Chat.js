@@ -12,7 +12,7 @@ import ChatHeader from "./ChatHeader";
 
 // style imports
 import {chatContainer, chatHeader, messageListContainer} from "../../styles/chat/ChatStyles";
-import {messageReceived, socket} from "../../utils/socket/socketUtils";
+import {messageReceivedSocket, socket} from "../../utils/socket/socketUtils";
 
 const Chat = (props) => {
 
