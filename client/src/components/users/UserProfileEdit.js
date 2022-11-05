@@ -39,12 +39,10 @@ const UserProfileEdit = (props) => {
         token: user.token
     });
 
-    console.log(userUpdate);
-
     return (
         <Box sx={userModalContainer}>
             <h2 style={formHeading}>Edit user information</h2>
-            <form style={form} onSubmit={(e) => updateProfileAction(e, user, userUpdate)}>
+            <form style={form} onSubmit={(e) => updateProfileAction(e, user, userUpdate, setEditInfo)}>
                 <p>Profile pic:</p>
                 <TextField
                     type="file"

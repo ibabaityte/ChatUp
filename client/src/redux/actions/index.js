@@ -35,7 +35,8 @@ export const getChatAction = (user, userId, setMessages) => async (dispatch) => 
     });
 }
 
-export const updateProfileAction = (e, user, userUpdate) => async (dispatch) => {
+export const updateProfileAction = (e, user, userUpdate, setEditInfo) => async (dispatch) => {
+    e.preventDefault();
     let userCredentials = await update(e, user, userUpdate);
     if (userCredentials.token !== undefined) {
         dispatch({
@@ -48,5 +49,6 @@ export const updateProfileAction = (e, user, userUpdate) => async (dispatch) => 
             payload: null
         });
     }
+    setEditInfo(false);
 }
 

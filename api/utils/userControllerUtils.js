@@ -10,7 +10,9 @@ const infoToUpdate = async (req) => {
         }
 
         await cloudinary.uploader.destroy(req.body.cloudinaryId)
-            .then(r => console.log(r))
+            .then(r => {
+                // console.log(r)
+            })
             .catch(err => console.log(err))
 
         await cloudinary.uploader.upload(req.file.path)
