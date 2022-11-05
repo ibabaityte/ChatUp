@@ -13,7 +13,7 @@ export default async (req, res, next) => {
         next();
     } catch {
         res.status(401).send({
-            message: "Auth failed"
+            message: "Authentication failed"
         });
 
     }

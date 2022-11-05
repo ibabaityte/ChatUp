@@ -149,6 +149,8 @@ const login = (req, res) => {
                             userId: data._id,
                             email: data.email,
                             image: data.image,
+                            cloudinaryId: data.cloudinaryId,
+                            bio: data.bio,
                             expirationTimestamp: Date.now() + 1000 * 60 * 60 * 48
                         });
                     } else {
@@ -259,7 +261,8 @@ const update = async (req, res) => {
         });
     }
 
-    User.findByIdAndUpdate(req.params.userId, await infoToUpdate(req), {new: true}).then(data => {
+    // need the option {new: true} so that the response sends back the new updated data instead of old data
+    await User.findByIdAndUpdate(req.params.userId, await infoToUpdate(req), {new: true}).then(data => {
         if (!data) {
             return res.status(404).send({
                 code: "404",

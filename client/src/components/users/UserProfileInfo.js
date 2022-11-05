@@ -51,7 +51,7 @@ const UserProfileInfo = (props) => {
                     </div>
                     <div>
                         <div><b>BIO</b></div>
-                        <div style={bio}> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent massa nisl, faucibus porttitor risus quis, rhoncus feugiat tellus. Maecenas facilisis lobortis laoreet. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent massa nisl, faucibus porttitor risus quis, rhoncus feugiat tellus.</div>
+                        <div style={bio}>{userInfo.bio}</div>
                     </div>
                 </Grid>
                 {

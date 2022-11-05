@@ -1,4 +1,5 @@
 import axios from "axios";
+import FormData from "form-data";
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 const USER_ENDPOINT = process.env.REACT_APP_USER_ENDPOINT;
@@ -8,13 +9,15 @@ const login = async (user) => {
     let result;
     await axios.post(`${API_ENDPOINT}/login`, {email, password})
         .then((data) => {
-            console.log(data);
+            // console.log(data);
             result = {
                 nameAndSurname: data.data.nameAndSurname,
                 email: data.data.email,
                 token: data.data.token,
                 userId: data.data.userId,
-                image: data.data.image
+                image: data.data.image,
+                cloudinaryId: data.data.cloudinaryId,
+                bio: data.data.bio
             };
         })
         .catch((err) => {
@@ -49,8 +52,45 @@ const search = (e, keyword, setKeyword, user, setSearchedUsers, setAnchorEl) => 
     })
 }
 
+const generateFormData = (user) => {
+    let formData = new FormData();
+    formData.append("nameAndSurname", user.name + " " + user.surname);
+    formData.append("email", user.email);
+    formData.append("bio", user.bio);
+    formData.append("image", user.image);
+    formData.append("cloudinaryId", user.cloudinaryId);
+    formData.append("userId", user.userId);
+    formData.append("token", user.token);
+    return formData;
+}
+
+const update = async (e, user, userUpdate) => {
+    let result;
+    await axios.put(`${USER_ENDPOINT}/${userUpdate.userId}`, generateFormData(userUpdate), {
+        headers: {
+            "Authorization": userUpdate.token,
+            "Content-Type": "multipart/form-data"
+        }
+    }).then(data => {
+        result = {
+            nameAndSurname: data.data.data.nameAndSurname,
+            email: data.data.data.email,
+            token: user.token,
+            userId: user.userId,
+            image: data.data.data.image,
+            cloudinaryId: data.data.data.cloudinaryId,
+            bio: data.data.data.bio
+        };
+    }).catch(err => {
+        console.log(err.response);
+        result = {};
+    })
+    return result;
+}
+
 export {
     login,
     register,
-    search
+    search,
+    update
 }

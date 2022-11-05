@@ -1,4 +1,4 @@
-import {login} from "../../utils/users/userUtils";
+import {login, update} from "../../utils/users/userUtils";
 import {getChat} from "../../utils/chat/chatUtils";
 
 export const loginAction = (user) => async (dispatch) => {
@@ -34,3 +34,19 @@ export const getChatAction = (user, userId, setMessages) => async (dispatch) => 
         payload
     });
 }
+
+export const updateProfileAction = (e, user, userUpdate) => async (dispatch) => {
+    let userCredentials = await update(e, user, userUpdate);
+    if (userCredentials.token !== undefined) {
+        dispatch({
+            type: "UPDATE",
+            payload: userCredentials
+        });
+    } else {
+        dispatch({
+            type: "UPDATE",
+            payload: null
+        });
+    }
+}
+

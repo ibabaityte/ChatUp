@@ -1,3 +1,7 @@
+import {useState} from "react";
+import {connect} from "react-redux";
+
+// style imports
 import {userModalContainer} from "../../styles/user/userModalStyles";
 import {
     form,
@@ -10,65 +14,86 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
+// util imports
+import {handleEdit} from "../../utils/users/userHandlers";
+import {update} from "../../utils/users/userUtils";
+import {updateProfileAction} from "../../redux/actions";
+import {mapUserToProps} from "../../redux/reduxUtils";
+
 const UserProfileEdit = (props) => {
 
     const {
-        userInfo,
-        setEditInfo
+        user,
+        setEditInfo,
+        updateProfileAction
     } = props;
+
+    const [userUpdate, setUserUpdate] = useState({
+        name: user.nameAndSurname.split(" ")[0],
+        surname: user.nameAndSurname.split(" ")[1],
+        email: user.email,
+        bio: user.bio,
+        image: user.image,
+        cloudinaryId: user.cloudinaryId,
+        userId: user.userId,
+        token: user.token
+    });
+
+    console.log(userUpdate);
 
     return (
         <Box sx={userModalContainer}>
             <h2 style={formHeading}>Edit user information</h2>
-            <form style={form}>
+            <form style={form} onSubmit={(e) => updateProfileAction(e, user, userUpdate)}>
                 <p>Profile pic:</p>
                 <TextField
                     type="file"
                     name="image"
                     accept="image/*"
-                    // onChange={e => handleProduct(e, "image", selectedProduct, setSelectedProduct)}
+                    onChange={e => handleEdit(e, "image", setUserUpdate, userUpdate)}
                 />
 
                 <br/>
+
                 <TextField
                     type="text"
-                    value={userInfo.nameAndSurname.split(" ")[0]}
+                    value={userUpdate.name}
                     name="name"
                     label="Name"
-                    // onChange={e => handleProduct(e, "title", selectedProduct, setSelectedProduct)}
+                    onChange={e => handleEdit(e, "name", setUserUpdate, userUpdate)}
                 />
 
                 <br/>
 
                 <TextField
                     type="text"
-                    value={userInfo.nameAndSurname.split(" ")[1]}
+                    value={userUpdate.surname}
                     name="surname"
                     label="Surname"
-                    // onChange={e => handleProduct(e, "description", selectedProduct, setSelectedProduct)}
+                    onChange={e => handleEdit(e, "surname", setUserUpdate, userUpdate)}
                 />
 
                 <br/>
 
                 <TextField
                     type="text"
-                    value={userInfo.email}
+                    value={userUpdate.email}
                     inputProps={{min: 0}}
                     name="email"
                     label="Email"
-                    // onChange={e => handleProduct(e, "price", selectedProduct, setSelectedProduct)}
+                    onChange={e => handleEdit(e, "email", setUserUpdate, userUpdate)}
                 />
 
                 <br/>
 
                 <TextField
                     type="text"
-                    value=""
+                    value={userUpdate.bio}
                     name="bio"
-                    label="Bio"
+                    label="bio"
                     multiline
                     rows={4}
-                    // onChange={e => handleProduct(e, "category", selectedProduct, setSelectedProduct)}
+                    onChange={e => handleEdit(e, "bio", setUserUpdate, userUpdate)}
                 />
 
                 <div style={buttonContainer}>
@@ -89,4 +114,4 @@ const UserProfileEdit = (props) => {
     );
 }
 
-export default UserProfileEdit;
+export default connect(mapUserToProps, {updateProfileAction})(UserProfileEdit);

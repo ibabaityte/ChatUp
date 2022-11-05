@@ -14,7 +14,18 @@ const handleRegister = (e, newUser, navigate) => {
     register(newUser, navigate);
 }
 
+const handleEdit = (e, name, setUserUpdate, userUpdate) => {
+    e.preventDefault();
+    const value = name === "image" ? e.target.files[0] : e.currentTarget.value;
+    setUserUpdate({
+            ...userUpdate,
+            [name]: value
+        }
+    );
+}
+
 export {
     handleInputChange,
-    handleRegister
+    handleRegister,
+    handleEdit
 };
