@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {connect} from "react-redux";
 
 // util imports
@@ -9,6 +9,7 @@ import {getRecentMessages} from "../../utils/message/utils";
 // component imports
 import NoMessagesContainer from "../chats/NoMessagesContainer";
 import Message from "../messages/Message";
+import TypingIndicator from "./TypingIndicator";
 
 // style imports
 import {messageList} from "../../styles/chat/ChatStyles";
@@ -19,6 +20,8 @@ const MessageList = (props) => {
         messages,
         setMessages,
         chatList,
+        friendTyping,
+        typing,
         chat,
         user
     } = props;
@@ -51,6 +54,14 @@ const MessageList = (props) => {
                         )
                     })
             }
+            <div>
+                {
+                    friendTyping && typing === false ?
+                        <TypingIndicator/>
+                        :
+                        null
+                }
+            </div>
         </div>
     );
 }

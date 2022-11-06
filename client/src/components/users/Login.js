@@ -1,5 +1,6 @@
 import {useState} from "react";
 import {connect} from "react-redux";
+import Error from "../Error";
 
 // utils
 import {handleInputChange} from "../../utils/users/userHandlers.js";
@@ -29,6 +30,7 @@ const Login = (props) => {
         <ThemeProvider theme={theme}>
             <Grid item sx={formTitle}>
                 <h4>Sign In to your account</h4>
+                <Error/>
             </Grid>
             <Grid item sx={formContainer}>
                 <form className="form">

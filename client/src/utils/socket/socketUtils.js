@@ -26,6 +26,31 @@ const chatDeletedSocket = (user, chatList, setChatList, getChatAction, setMessag
     fetchChats(user, chatList, setChatList);
 }
 
+const friendTypingSocket = (setFriendTyping) => {
+    setFriendTyping(true);
+    let msgList = document.getElementById("message-list");
+    msgList.scrollTop = msgList.scrollHeight;
+    // setTimeout(() => {
+    //     setFriendTyping(false);
+    // }, 2000);
+}
+
+const friendNotTypingSocket = (setFriendTyping) => {
+    setFriendTyping(false);
+    let msgList = document.getElementById("message-list");
+    msgList.scrollTop = msgList.scrollHeight;
+    // setTimeout(() => {
+    //     setFriendTyping(false);
+    // }, 2000);
+}
+
+
 export const socket = io.connect(endpoint);
 
-export {connectSocket, messageReceivedSocket, chatDeletedSocket}
+export {
+    connectSocket,
+    messageReceivedSocket,
+    chatDeletedSocket,
+    friendTypingSocket,
+    friendNotTypingSocket
+}

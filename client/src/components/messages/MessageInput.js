@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 // util imports
 import {createMessage} from "../../utils/message/utils";
 import {mapStateToProps} from "../../redux/reduxUtils";
+import {socket} from "../../utils/socket/socketUtils";
 
 // style imports
 import {messageInput, messageInputContainer, sendButton} from "../../styles/chat/ChatStyles";
@@ -14,6 +15,7 @@ import SendIcon from '@mui/icons-material/Send';
 const MessageInput = (props) => {
 
     const {
+        setTyping,
         chat,
         user
     } = props;
@@ -28,6 +30,14 @@ const MessageInput = (props) => {
                            variant="standard"
                            InputProps={{disableUnderline: true}}
                            placeholder="Send a message..."
+                           onFocus={() => {
+                               socket.emit("typing", chat);
+                               setTyping(true);
+                           }}
+                           onBlur={() => {
+                               socket.emit("not typing", chat);
+                               setTyping(false);
+                           }}
                            onChange={e => {
                                setMessage(e.target.value)
                            }}

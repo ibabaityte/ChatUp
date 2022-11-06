@@ -21,6 +21,9 @@ const Chat = (props) => {
         setChatList,
         messages,
         setMessages,
+        friendTyping,
+        typing,
+        setTyping
     } = props;
 
     return (
@@ -37,10 +40,14 @@ const Chat = (props) => {
                     messages={messages}
                     setMessages={setMessages}
                     chatList={chatList}
+                    friendTyping={friendTyping}
+                    typing={typing}
                 />
             </div>
             <div style={{height: "10%"}}>
-                <MessageInput/>
+                <MessageInput
+                    setTyping={setTyping}
+                />
             </div>
         </div>
     );

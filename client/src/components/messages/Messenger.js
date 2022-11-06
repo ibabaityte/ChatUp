@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import {mapStateToProps} from "../../redux/reduxUtils";
 import {getChatAction} from "../../redux/actions";
 import {fetchChats} from "../../utils/chat/chatUtils";
-import {connectSocket, socket, chatDeletedSocket} from "../../utils/socket/socketUtils";
+import {connectSocket, socket, chatDeletedSocket, friendTypingSocket, friendNotTypingSocket} from "../../utils/socket/socketUtils";
 
 // style imports
 import Grid from '@mui/material/Grid';
@@ -31,12 +31,16 @@ const Messenger = (props) => {
 
     const [chatList, setChatList] = useState([]);
     const [messages, setMessages] = useState([]);
+    const [friendTyping, setFriendTyping] = useState(false);
+    const [typing, setTyping] = useState(false);
 
     useEffect(() => {
         fetchChats(user, chatList, setChatList);
         connectSocket(socket, chat._id);
         socket.on("user joined", () => fetchChats(user, chatList, setChatList))
         socket.on("chat deleted", () => chatDeletedSocket(user, chatList, setChatList, getChatAction, setMessages));
+        socket.on("typing", () => friendTypingSocket(setFriendTyping))
+        socket.on("not typing", () => friendNotTypingSocket(setFriendTyping))
     }, []);
 
     return (
@@ -66,6 +70,9 @@ const Messenger = (props) => {
                         setChatList={setChatList}
                         messages={messages}
                         setMessages={setMessages}
+                        friendTyping={friendTyping}
+                        typing={typing}
+                        setTyping={setTyping}
                     />
                 </Grid>
             </Grid>
