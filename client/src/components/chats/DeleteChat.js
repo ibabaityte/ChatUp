@@ -9,7 +9,8 @@ import {socket} from "../../utils/socket/socketUtils";
 // style imports
 import Grid from "@mui/material/Grid";
 import IconButton from '@mui/material/IconButton';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';import {deleteIcon, deleteIconContainer} from "../../styles/chat/ChatStyles";
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import {deleteIcon, deleteIconContainer} from "../../styles/chat/ChatStyles";
 
 const DeleteChat = (props) => {
 

@@ -4,7 +4,7 @@ const userModalContainer = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: "40%",
-    height: "60%",
+    minHeight: "60%",
     backgroundColor: 'rgba(232, 232, 232)',
     p: 4,
     fontFamily: "Roboto, sans-serif"

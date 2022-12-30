@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {connect} from "react-redux";
 
 // util imports
@@ -19,7 +19,6 @@ const MessageList = (props) => {
     const {
         messages,
         setMessages,
-        chatList,
         friendTyping,
         typing,
         chat,
@@ -35,7 +34,6 @@ const MessageList = (props) => {
             msgList.scrollTop = msgList.scrollHeight;
         }, 10);
 
-        // socket.on("mostRecentMessages", messages => setMessages(messages));
     }, [messages]);
 
     useEffect(() => {

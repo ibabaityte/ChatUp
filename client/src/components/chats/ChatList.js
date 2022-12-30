@@ -2,7 +2,7 @@ import {connect} from "react-redux";
 
 // util imports
 import {getChatAction} from "../../redux/actions";
-import {mapStateToProps} from "../../redux/reduxUtils";
+import {mapUserToProps} from "../../redux/reduxUtils";
 
 // component imports
 import ChatListItem from "./ChatListItem";
@@ -15,10 +15,7 @@ import "../../styles/messenger/ChatList.css";
 const ChatList = (props) => {
 
     const {
-        chat,
-        getChatAction,
         chatList,
-        setChatList,
         setMessages,
         user
     } = props;
@@ -31,7 +28,7 @@ const ChatList = (props) => {
                         return <div key={key} className="chatListItemContainer">
                             {
                                 chat.users.map((chatUser, key) => {
-                                    if (chatUser.nameAndSurname !== user.nameAndSurname) {
+                                    if (chatUser._id !== user.userId) {
                                         return (
                                             <ChatListItem
                                                 key={key}
@@ -49,4 +46,4 @@ const ChatList = (props) => {
     );
 }
 
-export default connect(mapStateToProps, {getChatAction})(ChatList);
+export default connect(mapUserToProps, {getChatAction})(ChatList);

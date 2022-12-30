@@ -23,6 +23,9 @@ import {Avatar} from "@mui/material";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 
+// component imports
+import StatusMsg from "../StatusMsg";
+
 const UserProfileInfo = (props) => {
 
     const {
@@ -36,9 +39,10 @@ const UserProfileInfo = (props) => {
         <Box sx={userModalContainer}>
             <Grid container>
                 <Grid item sx={avatarContainer}>
+                    <StatusMsg/>
                     <Avatar
                         sx={avatar}
-                        src={user.image}
+                        src={userInfo.image}
                     />
                     <div style={nameAndSurnameContainer}>
                         <h2 style={nameAndSurname}>{userInfo.nameAndSurname}</h2>

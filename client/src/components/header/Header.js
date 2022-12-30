@@ -2,10 +2,8 @@ import {useState} from "react";
 import {connect} from "react-redux";
 
 // style imports
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import AccountCircle from '@mui/icons-material/AccountCircle';
 import Grid from '@mui/material/Grid';
 import {
     logoContainer,
@@ -13,7 +11,6 @@ import {
     iconContainer,
     logo,
     headerStyles,
-    userIcon,
     userNameContainer,
     userName,
     avatar
@@ -55,9 +52,6 @@ const Header = (props) => {
                 <Box sx={userNameContainer}>
                     <h3 style={userName}>{user.nameAndSurname.split(" ")[0]}</h3>
                 </Box>
-                {/*<IconButton onClick={(e) => handleProfileMenuOpen(e, setAnchorEl)}>*/}
-                {/*    <AccountCircle sx={userIcon}/>*/}
-                {/*</IconButton>*/}
                 <Avatar
                     onClick={(e) => handleProfileMenuOpen(e, setAnchorEl)}
                     sx={avatar}

@@ -14,9 +14,6 @@ const GradientBg = keyframes`
 const startupBg = {
     width: "100vw",
     height: "100vh"
-    // background: "linear-gradient(0deg, #ffffff, #ffffff, #b5fff2, #8affeb, #32d1e6)",
-    // backgroundSize: "150% 150%",
-    // animation: `${GradientBg} 9s ease infinite`
 }
 
 const gridItem = {
@@ -33,8 +30,6 @@ const button = {
 }
 
 const buttonContainer = {
-    // display: "flex",
-    // justifyContent: "space-evenly",
     width: {
         sx: "50%",
         md: "30%"
@@ -74,7 +69,7 @@ const input = {
 }
 
 const formTitle = {
-    height: "20%",
+    height: "10%",
     textAlign: "center",
     fontFamily: "Crimson Text, serif",
     letterSpacing: "2px",
@@ -89,7 +84,7 @@ const logo = {
 }
 
 const formContainer = {
-    height: "80%",
+    height: "90%",
     display: "flex",
     justifyContent: "center"
 }

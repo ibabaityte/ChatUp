@@ -19,7 +19,7 @@ const createChat = async (req, res) => {
     const {userId} = req.body;
 
     if (!userId) {
-        res.status(400).send({
+        return res.status(400).send({
             message: "Please provide a user id to create a chat"
         });
     }
@@ -30,8 +30,7 @@ const createChat = async (req, res) => {
             {users: userId}]
     }).then(async (result) => {
         if (result.length > 0) {
-            res.status(409).send({
-                code: "409",
+            return res.status(409).send({
                 message: "A chat with these users already exists. Try again."
             });
         } else {
@@ -45,14 +44,14 @@ const createChat = async (req, res) => {
 
             newChat.save()
                 .then(data => {
-                    res.status(200).send({
+                    return res.status(200).send({
                         message: "chat created successfully",
                         data: data
                     });
                 })
                 .catch(err => {
                     console.log(err);
-                    res.status(500).send({
+                    return res.status(500).send({
                         message: "Something went wrong during chat creation. Try again."
                     });
                 })
@@ -63,11 +62,11 @@ const createChat = async (req, res) => {
 const fetchChats = async (req, res) => {
     await Chats.find(fetchChatsConfig(req)).populate("users", "-password").sort({updatedAt: -1})
         .then(async result => {
-            res.status(200).send(result);
+            return res.status(200).send(result);
         })
         .catch(err => {
             console.log(err);
-            res.status(500).send({
+            return res.status(500).send({
                 message: "Something went wrong while fetching chats. Try again."
             });
         })
@@ -79,16 +78,14 @@ const deleteChat = async (req, res) => {
         Messages.deleteMany({chat: chatId})
             .then(result => {
                 // console.log(result);
-                res.status(200).send({
-                    code: "200",
+                return res.status(200).send({
                     message: "Messages successfully deleted"
                 });
 
             })
             .catch(err => {
                 console.log(err);
-                res.status(500).send({
-                    code: "500",
+                return res.status(500).send({
                     message: "Could not delete messages. Try again."
                 });
             })
@@ -96,12 +93,10 @@ const deleteChat = async (req, res) => {
         console.log(err);
         if (err.kind === "ObjectId" || err.name === "NotFound") {
             return res.status(404).send({
-                code: "404",
                 message: "Chat not found"
             });
         }
         return res.status(500).send({
-            code: "500",
             message: "Could not delete this chat. Try again."
         });
     });

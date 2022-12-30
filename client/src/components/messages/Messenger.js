@@ -58,7 +58,6 @@ const Messenger = (props) => {
                     <div style={{marginRight: "15px", overflowWrap: "break-word"}}>
                         <ChatList
                             chatList={chatList}
-                            setChatList={setChatList}
                             setMessages={setMessages}
                         />
                     </div>

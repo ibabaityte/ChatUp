@@ -4,12 +4,10 @@ const chatContainer = {
     height: "calc(90vh - 35px)",
     minHeight: "758px",
     borderRadius: "5px",
-    // overflowWrap: "break-word"
 }
 
 const chatHeader = {
     minHeight: "10%",
-    // backgroundColor: "rgba(25, 118, 210, 0.1)",
     borderRadius: "5px",
     display: "flex",
     alignItems: "center",
@@ -39,7 +37,6 @@ const chatMember = {
     fontSize: "18px",
     display: "inline-block",
     paddingLeft: "15px",
-    // overflowWrap: "break-word",
     margin: "auto",
 }
 
@@ -113,13 +110,11 @@ const chatRecipientContainer = {
 
 const chatRecipientGrid = {
     display: "flex",
-    // overflowWrap: "break-word",
     alignItems: "center"
 }
 
 const chatRecipient = {
     display: "flex",
-    // overflowWrap: "break-word",
     flexDirection: "row",
     paddingLeft: "15px"
 }

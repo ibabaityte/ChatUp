@@ -12,7 +12,7 @@ export default async (req, res, next) => {
         req.userId = jwt.verify(req.headers.authorization, secretKey).userId;
         next();
     } catch {
-        res.status(401).send({
+        return res.status(401).send({
             message: "Authentication failed"
         });
 

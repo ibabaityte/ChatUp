@@ -1,5 +1,6 @@
 // component imports
 import SearchListItem from "./SearchListItem";
+import StatusMsg from "../StatusMsg";
 
 // util imports
 import {handleClose} from "../../utils/header/headerUtils";
@@ -35,6 +36,7 @@ const SearchList = (props) => {
                 style: paper
             }}
         >
+            <StatusMsg/>
             {searchedUsers !== [] ?
                 searchedUsers.map((searchedUser, key) => {
                     return (

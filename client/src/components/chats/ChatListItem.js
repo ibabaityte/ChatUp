@@ -6,7 +6,6 @@ import {mapUserToProps} from "../../redux/reduxUtils";
 
 // style imports
 import {Avatar} from "@mui/material";
-import ImageIcon from "@mui/icons-material/Image";
 import ListItem from "@mui/material/ListItem";
 import {chatListItem, nameSurname, nameAndSurnameContainer, avatar} from "../../styles/messenger/ChatListStyles";
 import Grid from "@mui/material/Grid";
@@ -23,7 +22,6 @@ const ChatListItem = (props) => {
     return (
         <Grid container sx={chatListItem} onClick={() => getChatAction(user, chatUser._id, setMessages)}>
             <Grid item xs={12} sm={12} md={12} lg={3} xl={2}>
-                {/*<Avatar sx={avatar} src="https://www.google.com/url?sa=i&url=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fperson&psig=AOvVaw17wRrIvmbT-7sdgNmukdcl&ust=1667234101044000&source=images&cd=vfe&ved=0CA0QjRxqFwoTCPj2yZSxiPsCFQAAAAAdAAAAABAE"/>*/}
                 <Avatar
                     sx={avatar}
                     src={chatUser.image}

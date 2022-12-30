@@ -12,11 +12,6 @@ const createChat = (user, chatMember, getChatAction, chatList, setChatList, setM
             "Authorization": user.token
         }
     }).then(result => {
-        // let chatId = result.data.data._id;
-        // connectSocket(socket, chatId);
-        // fetch
-        // getRecentMessages(chatId, user, setMessages);
-
         // update chat list
         let newChatList = [...chatList, result.data.data];
         setChatList(newChatList);
@@ -34,12 +29,6 @@ const fetchChats = (user, chatList, setChatList) => {
             "Authorization": user.token
         }
     }).then(result => {
-        // if there are connected chats - connect to the first one
-        // if(chat.users.length > 0) {
-        //     getChatAction(user, chat.users[0]._id, setMessages);
-        // }
-        // connectSocket(socket, chat._id);
-
         // set chat list
         setChatList(result.data);
     }).catch(err => {
@@ -60,7 +49,6 @@ const getChat = async (user, receiver, setMessages) => {
         getRecentMessages(result.data[0]._id, user, setMessages);
         connectSocket(socket, result.data[0]._id);
         chat = result.data[0]
-        // socket.emit("fetch messages", result.data[0]._id, user);
     }).catch(err => {
         console.log(err);
         // chat = err;

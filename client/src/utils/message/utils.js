@@ -24,10 +24,8 @@ const getRecentMessages = (chatId, user, setMessages) => {
         }
     }).then(data => {
         setMessages(data.data.reverse());
-        // socket.emit("mostRecentMessages", data.data.reverse());
     }).catch(err => {
         // console.log(err);
-        // socket.emit("mostRecentMessages", []);
     })
 }
 

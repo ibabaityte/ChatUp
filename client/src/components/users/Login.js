@@ -1,10 +1,9 @@
 import {useState} from "react";
 import {connect} from "react-redux";
-import Error from "../Error";
 
 // utils
 import {handleInputChange} from "../../utils/users/userHandlers.js";
-import {loginAction} from "../../redux/actions";
+import {loginAction, errorMsgAction} from "../../redux/actions";
 import {mapUserToProps} from "../../redux/reduxUtils";
 
 // style imports
@@ -15,7 +14,16 @@ import Button from "@mui/material/Button";
 import {input, formContainer, formTitle, confirmButton} from "../../styles/startup/StartupPageStyles"
 import theme from "../../styles/Theme";
 
+// component imports
+import StatusMsg from "../StatusMsg";
+
 const Login = (props) => {
+
+    const {
+        loginAction,
+        errorMsgAction
+    } = props;
+
     const [user, setUser] = useState({
         email: "",
         password: ""
@@ -23,14 +31,13 @@ const Login = (props) => {
 
     const handleInput = (e) => {
         e.preventDefault();
-        props.loginAction(user);
+        loginAction(user, errorMsgAction);
     }
 
     return (
         <ThemeProvider theme={theme}>
             <Grid item sx={formTitle}>
                 <h4>Sign In to your account</h4>
-                <Error/>
             </Grid>
             <Grid item sx={formContainer}>
                 <form className="form">
@@ -56,6 +63,7 @@ const Login = (props) => {
                         onChange={e => handleInputChange(e, user, setUser)}
                     />
 
+                    <StatusMsg/>
                     <Button variant="contained" color="secondary" sx={confirmButton} type="submit" onClick={e => {handleInput(e)}}>Sign In</Button>
                 </form>
             </Grid>
@@ -63,4 +71,4 @@ const Login = (props) => {
     );
 }
 
-export default connect(mapUserToProps, {loginAction})(Login);
+export default connect(mapUserToProps, {loginAction, errorMsgAction})(Login);

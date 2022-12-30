@@ -17,8 +17,15 @@ const mapChatToProps = (state) => {
     }
 }
 
+const mapStatusMsgToProps = (state) => {
+    return {
+        msg: state.msg
+    }
+}
+
 export {
     mapStateToProps,
     mapUserToProps,
-    mapChatToProps
+    mapChatToProps,
+    mapStatusMsgToProps
 }

@@ -15,6 +15,8 @@ const UserProfileModal = (props) => {
         setModalOpen
     } = props;
 
+    console.log(userInfo);
+
     const [editInfo, setEditInfo] = useState(false);
 
     return (

@@ -16,16 +16,21 @@ import Button from "@mui/material/Button";
 
 // util imports
 import {handleEdit} from "../../utils/users/userHandlers";
-import {update} from "../../utils/users/userUtils";
 import {updateProfileAction} from "../../redux/actions";
 import {mapUserToProps} from "../../redux/reduxUtils";
+import {errorMsgAction, successMsgAction} from "../../redux/actions";
+
+// component imports
+import StatusMsg from "../StatusMsg";
 
 const UserProfileEdit = (props) => {
 
     const {
         user,
         setEditInfo,
-        updateProfileAction
+        updateProfileAction,
+        errorMsgAction,
+        successMsgAction
     } = props;
 
     const [userUpdate, setUserUpdate] = useState({
@@ -42,7 +47,7 @@ const UserProfileEdit = (props) => {
     return (
         <Box sx={userModalContainer}>
             <h2 style={formHeading}>Edit user information</h2>
-            <form style={form} onSubmit={(e) => updateProfileAction(e, user, userUpdate, setEditInfo)}>
+            <form style={form} onSubmit={(e) => updateProfileAction(e, user, userUpdate, setEditInfo, errorMsgAction, successMsgAction)}>
                 <p>Profile pic:</p>
                 <TextField
                     type="file"
@@ -94,6 +99,8 @@ const UserProfileEdit = (props) => {
                     onChange={e => handleEdit(e, "bio", setUserUpdate, userUpdate)}
                 />
 
+                <StatusMsg/>
+
                 <div style={buttonContainer}>
                     <Button
                         type="submit"
@@ -112,4 +119,4 @@ const UserProfileEdit = (props) => {
     );
 }
 
-export default connect(mapUserToProps, {updateProfileAction})(UserProfileEdit);
+export default connect(mapUserToProps, {updateProfileAction, errorMsgAction, successMsgAction})(UserProfileEdit);

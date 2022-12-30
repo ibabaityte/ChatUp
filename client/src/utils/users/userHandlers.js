@@ -9,9 +9,9 @@ const handleInputChange = (e, state, setState) => {
     );
 }
 
-const handleRegister = (e, newUser, navigate) => {
+const handleRegister = (e, newUser, navigate, errorMsgAction, successMsgAction) => {
     e.preventDefault();
-    register(newUser, navigate);
+    register(newUser, navigate, errorMsgAction, successMsgAction);
 }
 
 const handleEdit = (e, name, setUserUpdate, userUpdate) => {

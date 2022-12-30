@@ -1,8 +1,11 @@
 import {useState} from "react";
+import {connect} from "react-redux";
 import {useNavigate} from "react-router-dom";
 
 // util imports
 import {handleRegister, handleInputChange} from "../../utils/users/userHandlers";
+import {mapStatusMsgToProps} from "../../redux/reduxUtils";
+import {errorMsgAction, successMsgAction} from "../../redux/actions";
 
 // style imports
 import {ThemeProvider} from "@mui/material/styles";
@@ -12,7 +15,16 @@ import {input, formContainer, formTitle, confirmButton} from "../../styles/start
 import theme from "../../styles/Theme";
 import Grid from "@mui/material/Unstable_Grid2";
 
-const Register = () => {
+// component imports
+import StatusMsg from "../StatusMsg";
+
+const Register = (props) => {
+
+    const {
+        errorMsgAction,
+        successMsgAction
+    } = props;
+
     let navigate = useNavigate();
 
     const [newUser, setNewUser] = useState({
@@ -75,11 +87,12 @@ const Register = () => {
                         onChange={e => handleInputChange(e, newUser, setNewUser)}
                     />
 
-                    <Button variant="contained" color="secondary" sx={confirmButton} type="submit" onClick={e => handleRegister(e, newUser, navigate)}>Sign Up</Button>
+                    <StatusMsg/>
+                    <Button variant="contained" color="secondary" sx={confirmButton} type="submit" onClick={e => handleRegister(e, newUser, navigate, errorMsgAction, successMsgAction)}>Sign Up</Button>
                 </form>
             </Grid>
         </ThemeProvider>
     );
 }
 
-export default Register;
+export default connect(mapStatusMsgToProps, {errorMsgAction, successMsgAction})(Register);

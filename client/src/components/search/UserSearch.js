@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 // util imports
 import {search} from "../../utils/users/userUtils";
 import {mapUserToProps} from "../../redux/reduxUtils";
+import {errorMsgAction} from "../../redux/actions";
 
 // component imports
 import SearchInput from "./SearchInput";
@@ -19,7 +20,8 @@ const UserSearch = (props) => {
         chatList,
         setChatList,
         setMessages,
-        user
+        user,
+        errorMsgAction
     } = props;
 
     const [keyword, setKeyword] = useState("");
@@ -36,7 +38,7 @@ const UserSearch = (props) => {
                 <Button variant="contained"
                         sx={button}
                         type="submit"
-                        onClick={(e) => search(e, keyword, setKeyword, user, setSearchedUsers, setAnchorEl)}>Search
+                        onClick={(e) => search(e, keyword, setKeyword, user, setSearchedUsers, setAnchorEl, errorMsgAction)}>Search
                 </Button>
             </form>
             <SearchList
@@ -51,4 +53,4 @@ const UserSearch = (props) => {
     );
 }
 
-export default connect(mapUserToProps)(UserSearch);
+export default connect(mapUserToProps, {errorMsgAction})(UserSearch);
